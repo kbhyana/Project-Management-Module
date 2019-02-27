@@ -7,6 +7,7 @@ var app = express();
 // Body Parser Middleware
 app.use(bodyParser.json()); 
 
+app.use(express.static(__dirname+'/public'))
 //CORS Middleware
 app.use(function (req, res, next) {
     //Enabling CORS 
@@ -35,7 +36,7 @@ var  executeQuery = function(res, query){
      sql.connect(dbConfig, function (err) {
          if (err) {   
                      console.log("Error while connecting database :- " + err);
-                     res.send(err);
+                     res.send(err).status(500);
                   }
                   else {
                          // create Request object
@@ -44,10 +45,11 @@ var  executeQuery = function(res, query){
                          request.query(query, function (err, rs) {
                            if (err) {
                                       console.log("Error while querying database :- " + err);
-                                       res.send(err);
+                                       res.send(err).status(400);
+                               sql.close();
                                      }
                                      else {
-                                       res.send(rs);
+                                       res.send(rs).status(200);
                                         sql.close();
                                             }
                                });
@@ -91,7 +93,7 @@ app.get("/projects/ongoing", function(req , res){
 });
 // t0 get employee , role email of a particular project
 app.get("/projects/emprole/:id", function(req , res){
-                var query = " EXEC spEmployeesandRoles "+ req.params.id;
+                var query = "EXEC spEmployeesandRoles "+ req.params.id;
                 executeQuery (res, query);
 });
 
@@ -100,19 +102,19 @@ app.get("/projects/:id", function(req , res){
                 executeQuery (res, query);
 });
 //POST API
- app.post("/api/user", function(req , res){
-                var query = "INSERT INTO [user] (Name,Email,Password) VALUES (req.body.Name,req.body.Email,req.body.Password”);
+ app.post("/projects", function(req , res){
+                var query = "insert into Projects values('"+req.body.Name+"',"+req.body.Tenure+",'"+req.body.Client+"','"+req.body.Description+"',"+req.body.IsFinished+","+req.body.Progress+",'"+req.body.DateAssigned+"',"+req.body.isPipeline+"); Select * from Projects where ProjectID = (SELECT MAX(ProjectID) FROM projects);"; 
                 executeQuery (res, query);
 });
-
+//
 //PUT API
- app.put("/api/user/:id", function(req , res){
-                var query = "UPDATE [user] SET Name= " + req.body.Name  +  " , Email=  " + req.body.Email + "  WHERE Id= " + req.params.id;
-                executeQuery (res, query);
-});
+// app.put("/projects/:id", function(req , res){
+//                var query = "UPDATE [user] SET Name= " + req.body.Name  +  " , Email=  " + req.body.Email + "  WHERE Id= " + req.params.id;
+//                executeQuery (res, query);
+//});
 
 // DELETE API
- app.delete("/api/user /:id", function(req , res){
-                var query = "DELETE FROM [user] WHERE Id=" + req.params.id;
+app.delete("/projects/:id", function(req , res){
+                var query = "delete from Projects where Projectid = "+ req.params.id;
                 executeQuery (res, query);
 });
