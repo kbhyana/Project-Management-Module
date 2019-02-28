@@ -25,9 +25,9 @@ app.use(function (req, res, next) {
 
 //Initiallising connection string
 var dbConfig = {
-    user:  "sa",
-    password: "Password",
-    server: "DESKTOP-PE6EUGU",
+    server: "CYG385",
+    user:'sa',
+    password:'password',
     database:"HRMS"
 };
 
@@ -86,6 +86,17 @@ app.get("/projects/finished", function(req , res){
                 var query = " select * from [Finished Projects]";
                 executeQuery (res, query);
 });
+
+app.get("/ProjectTeamDetails", function(req , res){
+                var query = " select * from ProjectTeamDetails";
+                executeQuery (res, query);
+});
+
+app.get("/ProjectTeamDetails/:id", function(req , res){
+                var query = "select * from ProjectTeamDetails where Projectid = "+ req.params.id;
+                executeQuery (res, query);
+});
+
 
 app.get("/projects/ongoing", function(req , res){
                 var query = " select * from [OnGoing Projects]";
