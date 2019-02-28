@@ -27,7 +27,7 @@ app.use(function (req, res, next) {
 var dbConfig = {
     user:  "sa",
     password: "Password",
-    server: "DESKTOP-PE6EUGU",
+    server: "CYG353",
     database:"HRMS"
 };
 
@@ -101,17 +101,17 @@ app.get("/projects/:id", function(req , res){
                 var query = "select * from Projects where Projectid = "+ req.params.id;
                 executeQuery (res, query);
 });
-//POST API
+//POST API IN API HIT FALSE --> 0 TRUE--> 1
  app.post("/projects", function(req , res){
                 var query = "insert into Projects values('"+req.body.Name+"',"+req.body.Tenure+",'"+req.body.Client+"','"+req.body.Description+"',"+req.body.IsFinished+","+req.body.Progress+",'"+req.body.DateAssigned+"',"+req.body.isPipeline+"); Select * from Projects where ProjectID = (SELECT MAX(ProjectID) FROM projects);"; 
                 executeQuery (res, query);
-});
-//
+ });
+
 //PUT API
-// app.put("/projects/:id", function(req , res){
-//                var query = "UPDATE [user] SET Name= " + req.body.Name  +  " , Email=  " + req.body.Email + "  WHERE Id= " + req.params.id;
-//                executeQuery (res, query);
-//});
+ app.put("/projects/:id", function(req , res){
+                var query = "UPDATE Projects SET Name= '" + req.body.Name  +  "' , Tenure=  " + req.body.Tenure +",Client='"+ req.body.Client + "',Description = '"+req.body.Description+"', IsFinished="+req.body.IsFinished+", Progress =" +req.body.Progress+ ", DateAssigned ='"+req.body.DateAssigned+"', isPipeline = "+req.body.isPipeline+ " WHERE ProjectID= " +req.params.id+";Select * from Projects where ProjectID="  + req.params.id;
+                executeQuery (res, query);
+});
 
 // DELETE API
 app.delete("/projects/:id", function(req , res){
