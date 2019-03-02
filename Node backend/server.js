@@ -65,7 +65,7 @@ var  executeQuery = function(res, query){
         res.status(200).json(rows);
         sql.close();
       }).catch(err => {
-        res.status(500).send({ message: "${err}"})
+        res.status(500).send({ message: err })
         sql.close();
       });
 }
@@ -99,12 +99,12 @@ app.get("/projects/finished", function(req , res){
                 executeQuery (res, query);
 });
 
-app.get("/ProjectTeamDetails", function(req , res){
+app.get("/projectTeamDetails", function(req , res){
                 var query = " select * from ProjectTeamDetails";
                 executeQuery (res, query);
 });
 
-app.get("/ProjectTeamDetails/:id", function(req , res){
+app.get("/projectTeamDetails/:id", function(req , res){
                 var query = "select * from ProjectTeamDetails where Projectid = "+ req.params.id;
                 executeQuery (res, query);
 });
@@ -124,6 +124,13 @@ app.get("/projects/:id", function(req , res){
                 var query = "select * from Projects where Projectid = "+ req.params.id;
                 executeQuery (res, query);
 });
+
+//
+app.get("/user/projectdetails/:id", function(req , res){
+                var query = "EXEC spEmployeeindiffProjects "+ req.params.id+";";
+                executeQuery (res, query);
+});
+
 //POST API IN API HIT FALSE --> 0 TRUE--> 1
  app.post("/projects", function(req , res){
                 var query = "insert into Projects values('"+req.body.Name+"',"+req.body.Tenure+",'"+req.body.Client+"','"+req.body.Description+"',"+req.body.IsFinished+","+req.body.Progress+",'"+req.body.DateAssigned+"',"+req.body.isPipeline+"); Select * from Projects where ProjectID = (SELECT MAX(ProjectID) FROM projects);"; 
@@ -138,6 +145,6 @@ app.get("/projects/:id", function(req , res){
 
 // DELETE API
 app.delete("/projects/:id", function(req , res){
-                var query = "delete from Projects where Projectid = "+ req.params.id;
+                var query = "delete from Projects where Projectid = "+ req.params.id+"; select * from Projects;";
                 executeQuery (res, query);
 });
