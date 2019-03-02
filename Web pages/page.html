@@ -25,70 +25,46 @@
         <!-- getUrl("id");
 -->
 
-        <script>
-
-
-
-            var ProjectID=1;
-            console.log(ProjectID);
-            //$(#"deleteData").cli
-            $.ajax({
-                type: 'GET',
-                url: 'http://localhost:8000/Projects/' + ProjectID,
-
-                success: function(Data) {
-                    var info=Data.recordset[0];
-                    console.log(info);
-                    document.getElementById("nameop").innerHTML=info.Name; 
-                    document.getElementById("Progress").value=info.Progress; 
-                    document.getElementById("Client").value=info.Client;
-                    document.getElementById("demo").value=info.Progress;
-
-                    document.getElementById("myRange").value=info.Progress;
-
-                    console.log(info.Progress+info.Client);
-
-                    $('#profiles').append(
-                        '<tr><td id = "Name">' + info.Name+
-                        '</td><td id = "Designation">' + info.Designation +
-                        '</td><td id = "Email">' + info.Email+
-                        '</td></tr>'
-                    );
-                }
-            });
-            
-             $.ajax({
-                type: 'GET',
-                url: 'http://localhost:8000/ProjectTeamDetails/' + ProjectID,
-                success: function(Data) {
-                    
-             });
-
-
-
-
-
-
-
-        </script> 
-
-
-
-
-
-
+        <script src="hrmsproject.js"></script> 
         <style>
 
             <style>
             .c{ 
                 padding:10px;
             }
+            
+            
+            
+            table {
+  border-collapse: collapse;
+  border-radius: 0.5em;
+  overflow: hidden;
+}
 
+th, td {
+  padding: 1em;
+  background: #ddd;
+  border-bottom: 2px solid white; 
+}
+            input{
+                
+                 border-radius: 0.25em;
+            }
 
-            table, th, td {
+/*
+            table {
                 border: 1px solid black;
+                
+                
+            }
+
+
+             th, td {
+                border: 1px solid black;
+                
                 border-collapse: collapse;
             }
+*/
             .in{
                 display: inline-block;
                 padding:0%;
@@ -160,11 +136,14 @@
         <div class="container">
 
 
-            <h3 id="nameop">Name of Project</h3>
-
+            <h3 id="nameop" align="center">Name of Project</h3>
+            
+            <div align="center">
             <h4 class="in" ><span>Progress: <span><input id="Progress" style='width:30px'></span> </span></h4>
+            
 
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Update</button>
+            </div>
 
             <!-- Modal -->
             <div class="modal fade" id="myModal" role="dialog">
@@ -185,7 +164,7 @@
                             <input  id="demo" size="3">
 
 
-                            <button class="btn btn-primary">Submit</button>
+                            <button class="btn btn-primary" onclick="patch">Submit</button>
 
 
 
@@ -203,16 +182,27 @@
 
 
 
-            <h4 >Client Information:<span><input id="Client"></span></h4>
-            <h4>Team Members:</h4>
+            <h4 align="center">Client Information:<span><input id="Client" style="text-align:center"></span></h4>
+            <h4 align="center">Team Members:</h4>
 
-            <table style="font-size:19px" id="members">
+            <table style="font-size:19px" id="members" width="70%" align="center">
+
                 <tr>
-                    <th >Name</th>
-                    <th>Desigantion</th>
-                    <th>Email</th>
+
+                    <th id="Name">Name</th>
+
+
+                    <th id="Designation">Desigantion</th>
+
+
+                    <th id="Email">Email</th>
+
                 </tr>
+
             </table>
+            <button>Add Member</button><span>
+             <button>Add Manager</button></span>
+            
         </div>
 
 

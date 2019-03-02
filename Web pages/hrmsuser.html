@@ -3,22 +3,31 @@
         <meta  charset="utf-8">
         <meta  name="viewport" content="width=device-width, initial-scale=1.0">
         <title >Sign Up Form</title>
-        <link  rel="stylesheet" href="home.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        
-        
-  <!-- Materials Guideline -->
- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet"
-href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>       
 
+
+        <!-- Materials Guideline -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet"
+              href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>       
         <style>
             .c{ 
                 padding:10px;
-                 }
-        
+            }
+                
+/*            .pcard
+                {
+            width:25%;
+            }*/
+            
+
         </style>
+        <script
+                src="https://code.jquery.com/jquery-3.3.1.js"
+                integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+                crossorigin="anonymous"></script>
+        <script src="hrmsuser.js"></script>
 
 
 
@@ -27,7 +36,7 @@ href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     </head>
     <body>
 
-<header>
+        <header>
             <div class="card" >
                 <nav class="navbar navbar-expand-lg navbar-light bg-light" >
                     <a class="navbar-brand " href="#" style="margin: 0">
@@ -37,10 +46,10 @@ href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                            
-                         
-                            
-                            
+
+
+
+
                             <li class="nav-item" style="padding:1%">
                                 <button type="button" class="btn btn-dark" onclick="location.href='index.html';">Sign Out</button>
                             </li>
@@ -49,209 +58,47 @@ href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
                 </nav>
             </div>
         </header>
-        
-        
-        
-        
-        
-        <div class="container-fluid">
-            <h3>Name Here</h3>
-            
-            <!--row1-->
-            
-            
-            <div class=" row">
-                
-                
-              <!--col1-->  
-                
-            <div class=" c col ">
-         <div class=" card bg-info text-white">
-    <div class="card-header">Project 1</div>
-    <div class="card-body">
-        <ul>
-        <li>Progress:</li>
-            <li>Client:</li>
-            <li>Manager:</li>
-        </ul>
-        
 
-             </div> 
-    
-  </div>
-        </div>
-                <!--col2--> 
-                
-                 <div class="c col ">
-         <div class="card bg-info text-white">
-    <div class="card-header">Project 2</div>
-    <div class="card-body">
-        <ul>
-        <li>Progress:</li>
-            <li>Client:</li>
-            <li>Manager:</li>
-        </ul>
-        
 
-             </div> 
-    
-  </div>
-        </div>
-                
-                <!--col3
+        <div class="container-fluid" >
+            <h3 id="username" style="text-align: center">Name Here</h3>
+            
+            
                
-                
-                 <div class="c col col">
-         <div class="card bg-info text-white">
-    <div class="card-header">Project 3</div>
-    <div class="card-body">
-        <ul>
-        <li>Progress:</li>
-            <li>Client:</li>
-            <li>Manager:</li>
-        </ul>
-        
-
-             </div> 
-    
-  </div>
-        </div>
-                
-                <!--col4 
-                
-                 <div class="c col col">
-         <div class="card bg-info text-white">
-    <div class="card-header">Project 4</div>
-    <div class="card-body">
-        <ul>
-        <li>Progress:</li>
-            <li>Client:</li>
-            <li>Manager:</li>
-        </ul>
-        
-
-             </div> 
-    
-  </div>
-        </div>
-                
-                
-                
-            </div> 
-
-            
-            <!--row2
-            
-            <!--col1 
-            
-            
-             <div class="row">
-        <div class="c col col">
-         <div class="card bg-info text-white">
-    <div class="card-header">Project 5</div>
-    <div class="card-body">
-        <ul>
-        <li>Progress:</li>
-            <li>Client:</li>
-            <li>Manager:</li>
-        </ul>
-        
-
-             </div> 
-    
-  </div>
-        </div>
-                 
-                 <!--col2
-                 
-                 
-                  <div class="c col">
-         <div class="card bg-info text-white">
-    <div class="card-header">Project 6</div>
-    <div class="card-body">
-        <ul>
-        <li>Progress:</li>
-            <li>Client:</li>
-            <li>Manager:</li>
-        </ul>
-        
-
-             </div> 
-    
-  </div>
-        </div>
-              
-                 <!--col3--
-                 
-                 <div class="c col col">
-         <div class="card bg-info text-white">
-    <div class="card-header">Project 7</div>
-    <div class="card-body">
-        <ul>
-        <li>Progress:</li>
-            <li>Client:</li>
-            <li>Manager:</li>
-        </ul>
-        
-
-             </div> 
-    
-  </div>
-        </div>
-                 
-                 <!--col4--
-                 
-                 <div class="c col col">
-         <div class="card bg-info text-white">
-    <div class="card-header">Project 8</div>
-    <div class="card-body">
-        <ul>
-        <li>Progress:</li>
-            <li>Client:</li>
-            <li>Manager:</li>
-        </ul>
-        
-
-             </div> 
-    
-  </div>
-        </div>
+             <div class="card" id="proj" style="border: 0">
+                    </div>   
             </div>
-                <div class="row">
-               
-                 
-                          <div class="c col col-md-3">
-         <div class="card bg-info text-white">
-    <div class="card-header">Project 8</div>
-    <div class="card-body">
-        <ul>
-        <li>Progress:</li>
-            <li>Client:</li>
-            <li>Manager:</li>
-        </ul>
         
-
-             </div> 
-                              </div>
-                 </div>
-    
-                 -->
-                 
-                 </div>
-                 
-                 </div>
-        
-        
+            <!--row1
             
-         <footer class="footer text-center py-3" style="background-color: #f5f5f5">
+            <div class="row">
+                <!--col1
+                <div class=" c col ">
+                    <div class=" card bg-info text-white">
+                        <div class="card-header" id="projectname">Project 1</div>
+                        <div class="card-body" id="cardbody">
+                            <ul>
+                                <li id="Progress">Progress:</li>
+                                <li id="Client">Client:</li>
+                                <li id="Manager">Project Owner:</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>                         
+        </div> -->
+
+
+
+        <footer class="footer text-center py-3" style="background-color: #f5f5f5">
             <div class="container">
                 © 2019 Copyright: Cygrp ||Bootcamp
             </div>
         </footer>
-        
+
     </body>
-    
-    
+
+
 </html>
 
 
