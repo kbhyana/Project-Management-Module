@@ -26,38 +26,49 @@ app.use(function (req, res, next) {
 //Initiallising connection string
 var dbConfig = {
 
-    server: "CYG385",
+    server: "CYG353",
     user:'sa',
-    password:'password',
+    password:'Password',
     database:"HRMS"
 };
 
 //Function to connect to database and execute query
 var  executeQuery = function(res, query){             
-     sql.connect(dbConfig, function (err) {
-         if (err) {   
-                     console.log("Error while connecting database :- " + err);
-                     res.send(err).status(500);
-                  }
-                  else {
-                         // create Request object
-                         var request = new sql.Request();
-                         // query to the database
-                         request.query(query, function (err, rs) {
-                           if (err) {
-                                      console.log("Error while querying database :- " + err);
-                                       res.send(err).status(400);
-                               sql.close();
-                                     }
-                                     else {
-                                       res.send(rs).status(200);
-                                        sql.close();
-                                            }
-                               });
-                       }
-      });           
+//    sql.connect(dbConfig, function (err) {
+//        if (err) {   
+//            console.log("Error while connecting database :- " + err);
+//            res.send(err).status(500);
+//        }
+//        else {
+//            // create Request object
+//            var request = new sql.Request();
+//            // query to the database
+//            request.query(query, function (err, rs) {
+//                if (err) {
+//                    console.log("Error while querying database :- " + err);
+//                    sql.close();
+//                    res.send(err).status(400);
+//                }
+//                else {
+//                    sql.close();
+//                    res.send(rs).status(200);
+//                }
+//            });
+//        }
+//    });
+    
+    new sql.ConnectionPool(dbConfig).connect().then(pool => {
+      return pool.request().query(query)
+      }).then(result => {
+        let rows = result.recordset
+        res.setHeader('Access-Control-Allow-Origin', '*')
+        res.status(200).json(rows);
+        sql.close();
+      }).catch(err => {
+        res.status(500).send({ message: "${err}"})
+        sql.close();
+      });
 }
-
 //GET API Employee
 app.get("/employees", function(req , res){
                 var query = "select * from Employee;";
