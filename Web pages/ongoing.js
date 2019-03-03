@@ -1,5 +1,6 @@
 //Get the list of employees
 $(document).ready(function(){
+    console.log("hello");
  
     $.ajax({
         url:'http://localhost:8000/employees',
