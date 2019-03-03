@@ -82,9 +82,8 @@ function put(){
                 var senddate=date.slice(0,10);
                 console.log(senddate);
     
-            var dts={  
-                "ProjectID": info.ProjectID,
-                 "Name": info.Name,
+            var dts=JSON.stringify({  
+        "Name": info.Name,
         "Tenure": info.Tenure,
         "Client": info.Client,
         "Description": info.Description,
@@ -93,18 +92,22 @@ function put(){
         "DateAssigned": senddate,
         "isPipeline": Number(info.isPipeline)
                 
-                 }
+                 });
            
-
             $.ajax({
                 url: 'http://localhost:8000/projects/'+ ProjectID ,
                 data: dts,
                 type: 'PUT',
-                dataType:'JSON',
+                dataType:"TEXT",
+                contentType: "application/json; charset=utf-8",
                 success: function(res){
                     console.log(res);
                     alert("Progress Updated");
-                }
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                        console.log('Error: ' + JSON.stringify(error));
+                    },
             });
      console.log(dts);
         } 

@@ -1,9 +1,11 @@
-$(document).ready(function(){
-              var r;  
 
+$(document).ready(function(){
+//        localStorage.setItem(empid,'2');
+              var w= 2;  
+            var r;
                 $.ajax({
                     type: 'GET',
-                    url: 'http://localhost:8000/user/projectdetails/3', 
+                    url: 'http://localhost:8000/user/projectdetails/'+w, 
                     
                     success: function(Data) 
                     {

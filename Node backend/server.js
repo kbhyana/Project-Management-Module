@@ -26,9 +26,9 @@ app.use(function (req, res, next) {
 //Initiallising connection string
 var dbConfig = {
 
-    server: "CYG385",
+    server: "CYG353",
     user:'sa',
-    password:'password',
+    password:'Password',
     database:"HRMS"
 };
 
