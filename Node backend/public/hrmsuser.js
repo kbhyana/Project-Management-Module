@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
 //        localStorage.setItem(empid,'2');
-              var w= 2;  
+              var w= 3;  
             var r;
                 $.ajax({
                     type: 'GET',
@@ -26,7 +26,7 @@ $(document).ready(function(){
 //               ' <div class=" c col ">'+
                                '<div class="width">'+
                                 '<div class=" pcard card  text-white">'+
-                        '<a href="hrmsproject.html?id='+ info[i].ProjectID +'&role='+info[i].Role+'"><div class="card-header" id="projectname" >'+info[i].Name+'</div></a>'+
+                        '<a class ="link" href="hrmsproject.html?id='+ info[i].ProjectID +'&role='+info[i].Role+'"><div class="card-header" id="projectname" >'+info[i].Name+'</div></a>'+
                         '<div class="card-body" id="cardbody">'+
                    '<ul><li id = "Progress ">' + "Progress: "+info[i].Progress +"%"+
                             '</li><li id = "Client">'+ "Client: "+info[i].Client +

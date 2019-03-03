@@ -22,8 +22,19 @@
            
             $(document).ready(function(){
               
+            document.getElementById("forowner").style.visibility = "hidden";     
+                if (Role=="Project Owner")
+    {
+         document.getElementById("forowner").style.visibility = "visible";
+}
+                    
                 
-                
+                 document.getElementById("update").style.visibility = "hidden";     
+                if (Role=="Project Owner" || Role=="CM")
+    {
+         document.getElementById("update").style.visibility = "visible";
+}
+                    
                 
 
                 $.ajax({
