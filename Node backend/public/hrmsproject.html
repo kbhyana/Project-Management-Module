@@ -92,6 +92,10 @@ th, td {
                 background: #4CAF50;
                 cursor: pointer;
             }
+            h4,h3{
+                font-weight:bold;
+                
+            }
             
 
             #forowner{
@@ -100,6 +104,20 @@ th, td {
                 margin-right:15%;
             }
 
+             .footer {
+  
+                height: 8%;
+  
+  color: black;
+  text-align: center;
+}
+            
+            
+            .heading{
+                
+                margin-left: 15%;
+                
+            }
 
 
         </style>
@@ -146,11 +164,11 @@ th, td {
 
             <h3 id="nameop" align="center">Name of Project</h3>
             
-            <div align="center">
-            <h4 class="in" ><span>Progress: <span><input id="Progress" style='width:30px'></span> </span></h4>
+            <div class="heading" align="left">
+            <h4 class="in" ><span >Progress: <span><input id="Progress" style='width:30px'></span> </span></h4>
             
 
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Update</button>
+            <button id="update" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Update</button>
             </div>
 
             <!-- Modal -->
@@ -172,7 +190,7 @@ th, td {
                             <input  id="demo" size="3">
 
 
-                            <button class="btn btn-primary" onclick="put()">Submit</button>
+                            <button  class="btn btn-primary" onclick="put()">Submit</button>
 
 
 
@@ -189,9 +207,9 @@ th, td {
 
 
 
-                <div align="center">
-            <h4>Client Information:<span><input id="Client" style='width:18%'></span></h4></div>
-            <h4 align="center">Team Members:</h4>
+                <div class="heading" align="left">
+            <h4>Client Information:<span><input id="Client" ></span></h4>
+            <h4 style="margin-bottom:0 ">Team Members:</h4></div>
 
             <table style="font-size:19px" id="members" width="70%" align="center">
 
@@ -218,11 +236,11 @@ th, td {
 
 
 
-        <footer class="footer text-center py-3" style="background-color: #f5f5f5">
-            <div class="container">
+        <div class="footer text-center py-3" style="background-color: #f5f5f5">
+            <p>
                 © 2019 Copyright: Cygrp ||Bootcamp
-            </div>
-        </footer>
+            </p>
+        </div>
 
     </body>
 
