@@ -2,7 +2,7 @@
     <head>
         <meta  charset="utf-8">
         <meta  name="viewport" content="width=device-width, initial-scale=1.0">
-        <title >hrmsproject</title>
+        <title >newproject</title>
 
 
         <script src="https://code.jquery.com/jquery-3.3.1.js"
@@ -32,42 +32,54 @@
             .c{ 
                 padding:10px;
             }
-            
-            
-            
-            table {
-  border-collapse: collapse;
-  border-radius: 0.25em;
-  overflow: hidden;
-}
 
-th, td {
-  padding: 1em;
-  background: #ddd;
-  border-bottom: 2px solid white; 
-}
-            input{
-                
-                 border-radius: 0.25rem;
-                border:0;
-               
+
+
+            table {
                 
             }
 
+            th, td {
+                
+            }
+            input{
+
+                border-radius: 0.25rem;
+                border:1px solid grey;
+                margin-top: 10px;
+
+
+            }
+            select{
+                border-radius: 0.25rem;
+                border:1px solid grey;
+                margin-top: 10px;
+                width:65%;
+                
+
+            }
+            textarea{
+                
+                margin-top: 10px;
+            }
+            
 /*
             table {
-                border: 1px solid black;
-                
-                
-            }
+            border: 1px solid black;
 
 
-             th, td {
-                border: 1px solid black;
-                
-                border-collapse: collapse;
             }
 */
+
+
+            .label {
+            text-align: left;
+            }
+            .input{
+                
+            text-align: left;
+            }
+            
             .in{
                 display: inline-block;
                 padding:0%;
@@ -94,18 +106,24 @@ th, td {
             }
             h4,h3{
                 font-weight:bold;
-                
+
             }
             
 
-            #forowner{
-                
-                margin-left:76%;
-                margin-right:15%;
-            }
 
+
+
+            /*
             .footer {
-                
+
+            height: 8%;
+
+            color: black;
+            text-align: center;
+            }
+            */
+            .footer {
+                position: fixed;
                 left: 0;
                 bottom: 0;
                 width: 100%;
@@ -115,12 +133,11 @@ th, td {
                 text-align: center;
             }
 
-            
-            
+
             .heading{
-                
+
                 margin-left: 15%;
-                
+
             }
 
 
@@ -164,75 +181,71 @@ th, td {
 
 
         <div class="container">
-
-
-            <h3 id="nameop" align="center">Name of Project</h3>
-            
-            <div class="heading" align="left">
-            <h4 class="in" ><span >Progress: <span><input id="Progress" style='width:30px'></span> </span></h4>
-            
-
-            <button id="update" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Update</button>
-            </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-
-                            <label >Set Progress Percentage</label>
-                            <br>
-                            <input type="range" min="1" max="100"  class="slider" id="myRange">
-
-
-                            <input  id="demo" size="3">
-
-
-                            <button  class="btn btn-primary" onclick="put()">Submit</button>
-
-
-
-
-
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-
-            </div>
-
-
-
-                <div class="heading" align="left">
-            <h4>Client Information:<span><input id="Client" ></span></h4>
-            <h4 style="margin-bottom:0 ">Team Members:</h4></div>
-
-            <table style="font-size:19px" id="members" width="70%" align="center">
-
+            <table align="center">
                 <tr>
-
-                    <th id="Name">Name</th>
-
-
-                    <th id="Designation">Designation</th>
-
-
-                    <th id="Email">Email</th>
-
+                    <td class="label"><h4>Project Name:</h4></td><td class="input"><span><input id="project" ></span></td>
+                </tr>
+                <tr>
+                    <td class="label"><h4>Client Name:</h4></td><td class="input"><span><input id="client" ></span></td>
+                </tr>
+                <tr>
+                    <td class="label"><h4>Project Owner:</h4></td><td class="input"><span><select id="teamlead" ></select></span></td>
+                </tr>
+                <tr>
+                    <td class="label"><h4>Status:</h4></td><td class="input"><span> <select id="status"  >
+                    <option value = "ongoing">Ongoing</option>
+                    <option value = "pipeline">Pipeline</option>
+                    </select></span></td>
+                </tr>
+                <tr>
+                    <td class="label"><h4>Description:</h4></td><td class="input"><span><textarea rows="2" cols="30" name="comment" >
+</textarea></span></td>
                 </tr>
 
+
+
             </table>
-            <button class="btn btn-secondary" id="forowner">Add Member</button>
-            
+            <div class="buttons" align="center">
+            <button id="skill" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addskill">Add Skill</button>
+
+
+            <button id="member" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Member</button>
+            </div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="addskill" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <select multiple="true" id="skill"  class="js-example-basic-multiple" style="width: 100%">
+                            <option value = "ongoing">Ongoing</option>
+                            <option value = "pipeline">Pipeline</option>
+                        </select>
+
+                        <button  class="btn btn-primary" onclick="put()">Submit</button>
+
+
+
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
 
 
 
@@ -265,10 +278,14 @@ th, td {
 
 
 
+$(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+            $("js-example-basic-multiple").select2({
+                width: 'resolve' });
+        })
 
 
 
-             
 
 
 
@@ -283,6 +300,7 @@ th, td {
 <script  src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 -->
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script data-brackets-id='7431' src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
