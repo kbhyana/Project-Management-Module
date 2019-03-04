@@ -136,7 +136,16 @@ app.get("/projects/skills/:id",function(req,res){
                 var query="EXEC spSkillsinProject "+ req.params.id+";";
                 executeQuery (res,query);
 })
-
+// give employeess for the project
+app.get("/projects/recommend/:id",function(req,res){
+                var query="EXEC Recommend "+ req.params.id+";";
+                executeQuery (res,query);
+})
+// PUT API to change the product owner body must contain employeeid :1
+app.put("/projects/changeproductowner/:id",function(req,res){
+                var query="EXEC spChangeProjectOwner "+ req.params.id+" "+req.body.employeeid+";";
+                executeQuery (res,query);
+})
 //To GET Overall Skills 
 app.get("/skills", function(req,res){
         var query = "select * from Skills;";
