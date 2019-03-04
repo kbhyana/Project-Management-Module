@@ -28,7 +28,7 @@ var dbConfig = {
 
     server: "CYG353",
     user:'sa',
-    password:'password',
+    password:'Password',
     database:"HRMS"
 };
 
