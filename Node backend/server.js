@@ -26,7 +26,7 @@ app.use(function (req, res, next) {
 //Initiallising connection string
 var dbConfig = {
 
-    server: "CYG385",
+    server: "CYG353",
     user:'sa',
     password:'password',
     database:"HRMS"
@@ -130,6 +130,18 @@ app.get("/user/projectdetails/:id", function(req , res){
                 var query = "EXEC spEmployeeindiffProjects "+ req.params.id+";";
                 executeQuery (res, query);
 });
+
+//To Get Skills of  a Particular Project
+app.get("/projects/skills/:id",function(req,res){
+                var query="EXEC spSkillsinProject "+ req.params.id+";";
+                executeQuery (res,query);
+})
+
+//To GET Overall Skills 
+app.get("/skills", function(req,res){
+        var query = "select * from Skills;";
+        executeQuery (res,query);
+})
 
 //POST API IN API HIT FALSE --> 0 TRUE--> 1
  app.post("/projects", function(req , res){
