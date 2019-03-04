@@ -2,15 +2,15 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var sql = require("mssql");
-var app = express(); 
+var app = express();
 
 // Body Parser Middleware
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
 
 app.use(express.static(__dirname+'/public'))
 //CORS Middleware
 app.use(function (req, res, next) {
-    //Enabling CORS 
+    //Enabling CORS
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, contentType,Content-Type, Accept, Authorization");
@@ -26,16 +26,16 @@ app.use(function (req, res, next) {
 //Initiallising connection string
 var dbConfig = {
 
-    server: "CYG353",
+    server: "CYG278\SQLEXPRESS",
     user:'sa',
-    password:'Password',
+    password:'password',
     database:"HRMS"
 };
 
 //Function to connect to database and execute query
-var  executeQuery = function(res, query){             
+var  executeQuery = function(res, query){
 //    sql.connect(dbConfig, function (err) {
-//        if (err) {   
+//        if (err) {
 //            console.log("Error while connecting database :- " + err);
 //            res.send(err).status(500);
 //        }
@@ -56,7 +56,7 @@ var  executeQuery = function(res, query){
 //            });
 //        }
 //    });
-    
+
     new sql.ConnectionPool(dbConfig).connect().then(pool => {
       return pool.request().query(query)
       }).then(result => {
@@ -137,7 +137,7 @@ app.get("/projects/skills/:id",function(req,res){
                 executeQuery (res,query);
 })
 
-//To GET Overall Skills 
+//To GET Overall Skills
 app.get("/skills", function(req,res){
         var query = "select * from Skills;";
         executeQuery (res,query);
@@ -145,7 +145,7 @@ app.get("/skills", function(req,res){
 
 //POST API IN API HIT FALSE --> 0 TRUE--> 1
  app.post("/projects", function(req , res){
-                var query = "insert into Projects values('"+req.body.Name+"',"+req.body.Tenure+",'"+req.body.Client+"','"+req.body.Description+"',"+req.body.IsFinished+","+req.body.Progress+",'"+req.body.DateAssigned+"',"+req.body.isPipeline+"); Select * from Projects where ProjectID = (SELECT MAX(ProjectID) FROM projects);"; 
+                var query = "insert into Projects values('"+req.body.Name+"',"+req.body.Tenure+",'"+req.body.Client+"','"+req.body.Description+"',"+req.body.IsFinished+","+req.body.Progress+",'"+req.body.DateAssigned+"',"+req.body.isPipeline+"); Select * from Projects where ProjectID = (SELECT MAX(ProjectID) FROM projects);";
                 executeQuery (res, query);
  });
 
