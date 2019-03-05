@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>Projects</title>
+
+        <link  rel="stylesheet" href="home.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+        <script src="ongoing.js"></script>
+
+        <style>
+            input{
+                border: none;
+                height:50%;
+            }
+
+        </style>    
+
+    </head> 
+    <body>
+        <header>
+            <div class="card">
+                <nav class="navbar navbar-expand-lg navabr-light bg-light">
+                    <a class="navbar-brand " href="#" style="margin: 0"><img src="logo.png" class="img-fluid" alt="Responsive image" class="float-left" style="width: 16rem; height: 4.75rem  " ></a>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarNav">
+
+                        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                            <li class="nav-item active" style="padding: 1%">
+                                <button type="button" class="btn btn-primary"
+                                        onclick="location.href='home.html';">
+                                    Home
+                                    <span class="sr-only">(current)</span></button>
+                            </li>
+
+
+                            <li class="nav-item" style="padding: 1%">
+                                <button type="button" class="btn btn-primary disabled " onclick="location.href='projects.html';">Current  Projects </button>
+                            </li>
+
+                            <li class="nav-item" style="padding:1%">
+                                <button type="button" class="btn btn-dark" onclick="location.href='index.html';">Sign Out</button>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </nav>
+            </div>
+
+        </header>
+
+
+
+        <div class="container">
+            <div align="center">
+
+                <h1 id="projectname">Name Of Project</h1><span>
+                <h4 class="in">Progress:<input id="Progress" style='width:60px' style="text-align:center" readonly></h4>
+                </span>
+                <hr>
+                <h4>Name of Client<span><input id="client" style="text-align:center" readonly></span></h4>
+                <h4>Project Owner<span><input id="powner" style="text-align:center" type="text" readonly> <button type="button" class="btn btn-primary" data-toggle="modal" data-target=#myModal id="demo">Edit</button></span></h4>
+                <h4>CM<span><input id="cm" style="text-align:center" readonly></span></h4>
+
+                <!--Modal-->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="po">Add/Change The Project Owner</h5>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="proejctowner-name" class="col-form-label">Project Owner:</label>
+                                        <select class="form-control" id="sel">
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick="updatepo();">Update</button> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4>Developers</h4>
+            <table class="table" id="members">
+                <thead>
+                    <tr class="table-primary">
+                        <th scope="col" id="Name">Name</th>
+                        <th scope="col" id="Email" >Email</th>
+                    </tr>
+                </thead>
+            </table>
+            <hr>
+
+            <h4>Skills<span><button type="button" class="btn btn-primary" data-toggle="modal" data-target=#myModal2 id="skillbt" style="float:right">Add Skills</button></span></h4>
+            <table class="table table-hover"  id="skills">
+                <thead>
+                    <tr class="table-success">
+                        <th scope="col" id="S">Skills</th>
+                        <th scope="col" id="B" style="width:20px"></th>
+                    </tr>
+                </thead>
+            </table>
+
+
+
+            <!--Modal2-->
+            <div class="modal fade" id="myModal2" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="po">Edit Skills</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="skills" class="col-form-label">Skills:</label>
+                                    <select class="form-control" id="sel2" style="width: 100%">
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="updateskills();">Update</button> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <!-- Footer -->
+        <footer class="footer text-center py-3" style="background-color: #f5f5f5; position:absolute; width:100%;">
+            <div class="container">
+                © 2019 Copyright: Cygrp ||Bootcamp:
+            </div>
+        </footer>
+
+
+
+
+
+
+    </body>
+
+
+</html>
+
+<script  src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script data-brackets-id='7431' src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
