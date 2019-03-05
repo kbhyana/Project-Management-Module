@@ -25,10 +25,9 @@ app.use(function (req, res, next) {
 
 //Initiallising connection string
 var dbConfig = {
-
-    server: "CYG270",
-    user:'sa',
-    password:'anusha',
+    user:  "sa",
+    password: "Vatsal@123",
+    server: "CYG317",
     database:"HRMS"
 };
 
@@ -87,6 +86,10 @@ app.get("/projects", function(req , res){
                 executeQuery (res, query);
 });
 
+app.get("/projectsandrole", function(req , res){
+                var query = "";
+                executeQuery (res, query);
+});
 
 //GET
 app.get("/projects/pipeline", function(req , res){
@@ -136,7 +139,16 @@ app.get("/projects/skills/:id",function(req,res){
                 var query="EXEC spSkillsinProject "+ req.params.id+";";
                 executeQuery (res,query);
 })
-
+// give employeess for the project
+app.get("/projects/recommend/:id",function(req,res){
+                var query="EXEC Recommend "+ req.params.id+";";
+                executeQuery (res,query);
+})
+// PUT API to change the product owner body must contain employeeid :1
+app.put("/projects/changeproductowner/:id",function(req,res){
+                var query="EXEC spChangeProjectOwner "+ req.params.id+" "+req.body.employeeid+";";
+                executeQuery (res,query);
+})
 //To GET Overall Skills 
 app.get("/skills", function(req,res){
         var query = "select * from Skills;";
@@ -149,6 +161,11 @@ app.get("/skills", function(req,res){
                 executeQuery (res, query);
  });
 
+//EXEC spAddMember 2,2,2; projectid:x , employeeid:y , roleid:z
+app.post("/projects/addmember", function(req , res){
+                var query = "EXEC spAddMember "+req.body.projectid+"',"+req.body.employeeid+",'"+req.body.roleid+";"; 
+                executeQuery (res, query);
+ });
 //PUT API
  app.put("/projects/:id", function(req , res){
                 var query = "UPDATE Projects SET Name= '" + req.body.Name  +  "' , Tenure=  " + req.body.Tenure +",Client='"+ req.body.Client + "',Description = '"+req.body.Description+"', IsFinished="+req.body.IsFinished+", Progress =" +req.body.Progress+ ", DateAssigned ='"+req.body.DateAssigned+"', isPipeline = "+req.body.isPipeline+ " WHERE ProjectID= " +req.params.id+";Select * from Projects where ProjectID="  + req.params.id;
@@ -160,3 +177,9 @@ app.delete("/projects/:id", function(req , res){
                 var query = "delete from Projects where Projectid = "+ req.params.id+"; select * from Projects;";
                 executeQuery (res, query);
 });
+
+app.get("/user/projectdetails/:id", function(req , res){
+                var query = "EXEC spEmployeeindiffProjects "+ req.params.id;
+                executeQuery (res, query);
+});
+
