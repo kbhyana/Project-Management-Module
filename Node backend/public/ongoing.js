@@ -109,7 +109,7 @@ $.ajax({
         console.log(res);
         $.each(res, function(i, item){
             $('#sel2').append($('<option>',{
-                value:item.SkillId,
+                value:item.Id,
                 text:item.Name
             }));
         })
@@ -132,7 +132,8 @@ $.ajax({
             $('#skills').append(
 
                 '<tr><td id = "S">' + res[k].Name+
-                '</td></tr>');
+                '</td><td id="B"><i id="del" class="fa fa-trash fa-1x" onclick="ondelete();" aria-hidden="true"></i>' +
+'</td></tr>');
 
             pskills[k]=res[k].SkillId;
 
@@ -146,10 +147,30 @@ console.log(pskills);
 
 function updateskills(){
     var  technology = document.getElementById("sel2").value;
+    setTimeout(function(){console.log(technology)},3000);
     console.log(technology);
-    pskills=pskills.concat(technology);
-    console.log(pskills);
-}
+    
+    var dataToSend=JSON.stringify({
+                    "skillid": technology
+    });
+    
+    $.ajax({
+        url:'http://localhost:8000/projects/skills/1',
+        type:'POST',
+        data: dataToSend,
+       dataType:"TEXT",
+        contentType: "application/json; charset=utf-8",
+        success: function(res){
+          alert("New Skill Added");
+            location.reload();
+        },
+        error: function (xhr, status, error) {
+                        console.log('Error: ' + JSON.stringify(error));
+                    },
+    });
+    }
+    
+
 
 
 

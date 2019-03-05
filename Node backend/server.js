@@ -26,8 +26,8 @@ app.use(function (req, res, next) {
 //Initiallising connection string
 var dbConfig = {
     user:  "sa",
-    password: "Vatsal@123",
-    server: "CYG317",
+    password: "anusha",
+    server: "CYG270",
     database:"HRMS"
 };
 
@@ -162,7 +162,7 @@ app.get("/skills", function(req,res){
  });
 //insert into SkillsinProject values (1,1) skillid :y projectid in url
 app.post("/projects/skills/:projectid", function(req , res){
-                var query = "insert into SkillsinProject values("+req.body.skillid +","+req.params.projectid+";"; 
+                var query = "insert into SkillsinProject Values("+req.body.skillid +","+req.params.projectid+");"; 
                 executeQuery (res, query);
  });
 //EXEC spAddMember 2,2,2; projectid:x , employeeid:y , roleid:z
@@ -179,6 +179,11 @@ app.post("/projects/addmember", function(req , res){
 // DELETE API
 app.delete("/projects/:id", function(req , res){
                 var query = "delete from Projects where Projectid = "+ req.params.id+"; select * from Projects;";
+                executeQuery (res, query);
+});
+
+app.delete("/projects/skills/:projectid/:skillid", function(req , res){
+                var query = "delete from SkillsinProject where ProjectId = "+ req.params.projectid+"and SkillId ="+ req.params.skillid+";"
                 executeQuery (res, query);
 });
 
