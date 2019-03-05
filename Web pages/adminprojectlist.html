@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>HRMS 2.0 - Project details</title>
+    <script>
+        var strUser;
+        var link = [];
+        var projectsdata = [];
+        function DefaultFilter()  //Set default value to All projects
+        {
+            $('.selectpicker').selectpicker('val', 'All Projects');
+        }
+        function filterfunction() //Get value of selection
+        {
+            var values = document.getElementById("filtervalues");
+            strUser = values.options[values.selectedIndex].value;
+            console.log("Value chosen :" + " " + strUser);
+            
+            if(strUser=="All Projects")
+                link = "/projects"
+            else if(strUser=="Pipelined Projects")
+                link = "/projects/pipeline"
+            else if(strUser=="Completed Projects")
+                link = "/projects/finished"
+            else if(strUser=="Ongoing Projects")
+                link = "/projects/ongoing"
+            GETProjectsFiltered();
+        }    
+        
+        function GETProjectsFiltered()   //AJAX call for projects
+        {
+            
+            $.ajax({
+                    type: 'GET',
+                  url: 'http://localhost:8000' + link,
+                    success: function(Data) {
+                        $("#tablevalues tr td").remove();
+                                       
+                        projectsdata = Data;
+                        console.log(projectsdata);
+                        for(i=0; i<projectsdata.length;i++){
+                            $('#tablevalues').append(
+                                
+                                
+                                '<tr><td id = "Project">' + projectsdata[i].Name+
+                                '</td><td id = "Client">' + projectsdata[i].Client+
+                                '</td><td id = "Progress">' + projectsdata[i].Progress+
+                                '</td><td id = "button" onclick="viewmore()">View More'+
+                                '</td></tr>');
+                            }
+                    }
+                }); 
+            
+		}	
+    </script>      
+    <style>
+    html
+    {
+      min-width: 500px;
+    }
+    .head
+    {
+      height: 90px;
+    }
+    .select
+    {
+      text-align: center;
+      margin-top:3%;
+    }
+    .filter
+    {
+      text-align: center;
+      margin-top:3%;
+      width: 30%;
+    }
+    #tablevalues
+    {
+        margin-left: 17%;
+        margin-top: 2%;
+        width: 60%;
+        border-collapse: collapse;
+    }
+    #button:hover
+        {
+            background: #e4e4e4;
+        }
+        
+    </style>
+  </head>
+
+<body onload="DefaultFilter()">
+  <div class="container head">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light head">
+      <a class="navbar-brand" href="#"><img src='logo.png' width="300px"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Employee Details</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Task 1</a>
+              <a class="dropdown-item" href="#">Task 2</a>
+              <a class="dropdown-item" href="#">Task 3</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sign out</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container-fluid select">
+    <select class="selectpicker style" data-live-search="false" data-width="40%" font-size="20px" id="filtervalues" onchange="filterfunction()">
+        <option>All Projects</option>
+        <option>Ongoing Projects</option>
+        <option>Pipelined Projects</option>
+        <option>Completed Projects</option>
+      </select>
+
+    <div class="container table">
+      <div id="myContacts">   
+		<table border="1" class="table" id="tablevalues">
+            <thead>
+                    <th scope="col" style="background-color: lightblue">Project</th>
+                    <th scope="col" style="background-color: lightblue">Client</th>
+                    <th scope="col" style="background-color: lightblue">Progress</th>
+                    <th scope="col" style="background-color: lightblue">More info</th>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+      </div>
+    </div>
+    </div>
+  </body>
+</html>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css">
