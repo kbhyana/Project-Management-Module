@@ -161,6 +161,11 @@ app.get("/skills", function(req,res){
                 executeQuery (res, query);
  });
 
+//EXEC spAddMember 2,2,2; projectid:x , employeeid:y , roleid:z
+app.post("/projects/addmember", function(req , res){
+                var query = "EXEC spAddMember "+req.body.projectid+"',"+req.body.employeeid+",'"+req.body.roleid+";"; 
+                executeQuery (res, query);
+ });
 //PUT API
  app.put("/projects/:id", function(req , res){
                 var query = "UPDATE Projects SET Name= '" + req.body.Name  +  "' , Tenure=  " + req.body.Tenure +",Client='"+ req.body.Client + "',Description = '"+req.body.Description+"', IsFinished="+req.body.IsFinished+", Progress =" +req.body.Progress+ ", DateAssigned ='"+req.body.DateAssigned+"', isPipeline = "+req.body.isPipeline+ " WHERE ProjectID= " +req.params.id+";Select * from Projects where ProjectID="  + req.params.id;
