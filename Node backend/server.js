@@ -160,7 +160,11 @@ app.get("/skills", function(req,res){
                 var query = "insert into Projects values('"+req.body.Name+"',"+req.body.Tenure+",'"+req.body.Client+"','"+req.body.Description+"',"+req.body.IsFinished+","+req.body.Progress+",'"+req.body.DateAssigned+"',"+req.body.isPipeline+"); Select * from Projects where ProjectID = (SELECT MAX(ProjectID) FROM projects);"; 
                 executeQuery (res, query);
  });
-
+//insert into SkillsinProject values (1,1) skillid :y projectid in url
+app.post("/projects/skills/:projectid", function(req , res){
+                var query = "insert into SkillsinProject values("+req.body.skillid +","+req.params.projectid+";"; 
+                executeQuery (res, query);
+ });
 //EXEC spAddMember 2,2,2; projectid:x , employeeid:y , roleid:z
 app.post("/projects/addmember", function(req , res){
                 var query = "EXEC spAddMember "+req.body.projectid+"',"+req.body.employeeid+",'"+req.body.roleid+";"; 
