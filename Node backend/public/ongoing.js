@@ -1,4 +1,4 @@
-var getUrl = function getUrl(param){
+/*var getUrl = function getUrl(param){
     var pageUrl = window.location.search.substring(1);
     var urlVariables = pageUrl.split("&");
     var parameterName;
@@ -9,19 +9,23 @@ var getUrl = function getUrl(param){
             return  parameterName[1] == undefined ? true : decodeURIComponent(parameterName[1]);
         }
     }
-}
+}*/
+
+var url = new URL(window.location.href);
+            var id = url.searchParams.get("id");
+            id=Number(id);
+        var projectid= id;
+        console.log(projectid);
 
 $(document).ready(function(){
 
-    var ProjectID=getUrl("id");
-    console.log(ProjectID);
-
+    
     var info;
     var finished;
     console.log("hello"); 
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8000/Projects/1',
+        url: 'http://localhost:8000/Projects/'+projectid,
 
         success: function(Data) {
             info=Data[0];
@@ -52,7 +56,7 @@ $(document).ready(function(){
     //    
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8000/Projects/emprole/1',
+        url: 'http://localhost:8000/Projects/emprole/'+projectid,
         success: function(Data) {
             console.log(Data);
             for(i=0; i<Data.length;i++){
@@ -122,17 +126,17 @@ var sid=[];
 
 //Get the skills of the project
 $.ajax({
-    url:'http://localhost:8000/projects/skills/1',
+    url:'http://localhost:8000/projects/skills/'+projectid,
     type:'GET',
     dataType: 'JSON',
     success: function(res){
 
         for(k=0; k<res.length;k++){
-
+                
             $('#skills').append(
 
                 '<tr><td id = "S">' + res[k].Name+
-                '</td><td id="B"><i id="del" class="fa fa-trash fa-1x" onclick="ondelete();" aria-hidden="true"></i>' +
+                '</td><td id="B"><i id='+res[k].SkillId+' class="fa fa-trash fa-1x" onclick="ondelete(this.id);" aria-hidden="true"></i>' +
 '</td></tr>');
 
             pskills[k]=res[k].SkillId;
@@ -155,7 +159,7 @@ function updateskills(){
     });
     
     $.ajax({
-        url:'http://localhost:8000/projects/skills/1',
+        url:'http://localhost:8000/projects/skills/'+projectid,
         type:'POST',
         data: dataToSend,
        dataType:"TEXT",
@@ -171,12 +175,29 @@ function updateskills(){
     }
     
 
+function ondelete(id){
+    
+    var del_id = Number(id);
+    console.log(del_id);
+    
+       var x= confirm("Are you sure want to delete?");
+        
+       if(x){
+    $.ajax({
+        type: 'DELETE',
+        url: 'http://localhost:8000/projects/skills/'+projectid+'/'+del_id,
+        contentType:"application/json;charset=utf-8",
+        success: function(data){  
+            alert("skill deleted");
+        }
+    });
+                      window.location="Ongoing.html";
+       }
+    }
 
-
-
-//console.log(pskills);
-
-//Update the Skills
-
-
-
+function addtofinishedproject(){
+    
+    $.ajax({
+        
+    })
+}

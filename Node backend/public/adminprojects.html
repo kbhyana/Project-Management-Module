@@ -40,16 +40,20 @@
                         console.log(projectsdata);
                         for(i=0; i<projectsdata.length;i++){
                             $('#tablevalues').append(                                
-                                '<tr><td id = "Project">' + projectsdata[i].Project+
+                                '<tr><td id = "Project">' + projectsdata[i].Name+
                                 '</td><td id = "Client">' + projectsdata[i].Client+
                                 '</td><td id = "Progress">' + projectsdata[i].Progress+
-                                '</td><td id = "Button" onclick="button()">' + "View Details"+
+                                '</td><td><button id='+projectsdata[i].ProjectID+' onclick="projectdetails(this.id);">' + "View Details"+
 
-                                '</td></tr>');
+                                '</button></td></tr>');
                             }
                     }
                 });                
-		}	
+		}
+        
+        function projectdetails(id){
+    window.location="Ongoing.html?id="+id;
+}
     </script>      
     <style>
     html
