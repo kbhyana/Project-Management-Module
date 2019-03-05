@@ -21,6 +21,14 @@
             //$(#"deleteData").cli
            
             $(document).ready(function(){
+                
+                
+            $('.js-example-basic-multiple').select2();
+            $("js-example-basic-multiple").select2({
+                width: 'resolve' });
+        
+                
+                
               
             document.getElementById("forowner").style.visibility = "hidden";     
                 if (Role=="Project Owner")
@@ -78,10 +86,37 @@
                 
                 
                 
+                
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://localhost:8000/projects/recommend/'+ ProjectID,
+                    success: function(Data) {
+                        
+                        console.log(Data);
+                       
+                        for(i=0; i<Data.length;i++){
+                            $('#getmembers').append(
+                                '<li>' + Data[i].Name+
+                                '</li>' 
+                                
+                            )
+                            $('#getmember').append(
+                                '<option id="'+Data[i].Employeeid+'">'+ Data[i].FirstName +Data[i].LastName+
+                                '</option>' 
+                                
+                    )
+                        }
+                    }
+                
+                
+                
+                
+                
          
                 
             });
 
+                    }); 
  
 
 function put(){
@@ -122,6 +157,9 @@ function put(){
             });
      console.log(dts);
         } 
+
+
+
 
 
 

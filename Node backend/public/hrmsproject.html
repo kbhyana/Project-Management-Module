@@ -67,7 +67,14 @@ th, td {
                 
                 border-collapse: collapse;
             }
+            
 */
+            
+            
+            h6{
+            
+            letter-spacing: 0;
+            }
             .in{
                 display: inline-block;
                 padding:0%;
@@ -122,7 +129,21 @@ th, td {
                 margin-left: 15%;
                 
             }
+            h6{
+                margin-top: 0;
+                margin-bottom: 0;        
+            }
 
+            ul{
+                
+                margin-left: 0;
+            }
+            .modal{
+                font-family:inherit;
+             
+            }
+            
+            
 
         </style>
 
@@ -131,7 +152,7 @@ th, td {
 
 
     </head>
-    <body>
+    <body >
 
         <header>
 
@@ -176,7 +197,7 @@ th, td {
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal fade" id="myModal" role="dialog" >
                 <div class="modal-dialog">
 
                     <!-- Modal content-->
@@ -230,9 +251,50 @@ th, td {
                 </tr>
 
             </table>
-            <button class="btn btn-secondary" id="forowner">Add Member</button>
+            <button class="btn btn-secondary" id="forowner" data-toggle="modal" data-target="#member">Add Member</button>
             
         </div>
+        
+        
+         
+            <div class="modal fade" id="member" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #007bff ">
+                        <h5 class="modal-title" id="exampleModalLabel" style="color: white" >Add Member </h5>
+                    </div>
+                    <div class="modal-body">
+                      <h6>Skills required in Project</h6>
+                       <ul font-family="helvetica" id="getmembers"></ul>
+                    <h6>Select Member</h6>
+                        <select  id="getmember"  class="js-example-basic-multiple" style="width: 100%">
+                        <br>
+
+
+                               
+                                </select>
+                                <br>
+                                <br>
+                                <h6>Select Role</h6>
+                                
+                                <select id="getrole"  class="js-example-basic-multiple" style="width: 100%">
+                                   <option value="2">Competency Manager</option>
+                                   <option value="3">Developer</option> 
+                                </select>
+                                
+                            
+                           
+                           
+                            
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="addmember();">Update </button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        
 
 
 

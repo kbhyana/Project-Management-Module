@@ -7,14 +7,10 @@
 
         <script src="https://code.jquery.com/jquery-3.3.1.js"
                 integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-                crossorigin="anonymous"></script>
-
-
-
-
-
-
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+                crossorigin="anonymous">
+        </script>
+          <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
         <!-- Materials Guideline -->
@@ -209,7 +205,7 @@
             <button id="skill" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addskill">Add Skill</button>
 
 
-            <button id="member" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Member</button>
+            
             </div>
         </div>
 
@@ -223,11 +219,19 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
+                       <form>
                         <select multiple="true" id="skill"  class="js-example-basic-multiple" style="width: 100%">
                             <option value = "ongoing">Ongoing</option>
                             <option value = "pipeline">Pipeline</option>
                         </select>
-
+                         <div class="form-group">
+                                <label for="skill suggestions" class="col-form-label">Skills required for Project</label>
+                                <select id="skilld" multiple="true" class="js-example-basic-multiple" style="width: 100%">
+                                <option value = "ongoing">Ongoing</option>
+                                </select>
+                            
+                            </div>
+                        </form>
                         <button  class="btn btn-primary" onclick="put()">Submit</button>
 
 
@@ -300,6 +304,8 @@ $(document).ready(function() {
 <script  src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 -->
+
+<script  src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script data-brackets-id='7431' src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
