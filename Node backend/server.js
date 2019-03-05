@@ -26,8 +26,8 @@ app.use(function (req, res, next) {
 //Initiallising connection string
 var dbConfig = {
     user:  "sa",
-    password: "Password",
-    server: "DESKTOP-PE6EUGU",
+    password: "Vatsal@123",
+    server: "CYG317",
     database:"HRMS"
 };
 
@@ -75,6 +75,10 @@ app.get("/projects", function(req , res){
                 executeQuery (res, query);
 });
 
+app.get("/projectsandrole", function(req , res){
+                var query = "";
+                executeQuery (res, query);
+});
 
 //GET
 app.get("/projects/pipeline", function(req , res){
@@ -116,5 +120,10 @@ app.get("/projects/:id", function(req , res){
 // DELETE API
 app.delete("/projects/:id", function(req , res){
                 var query = "delete from Projects where Projectid = "+ req.params.id;
+                executeQuery (res, query);
+});
+
+app.get("/user/projectdetails/:id", function(req , res){
+                var query = "EXEC spEmployeeindiffProjects "+ req.params.id;
                 executeQuery (res, query);
 });
