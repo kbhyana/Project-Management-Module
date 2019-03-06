@@ -16,6 +16,25 @@
         <script src="ongoing.js"></script>
 
         <style>
+            html
+            {
+                min-width: 700px;
+            }
+            .head
+            {
+                height: 90px;
+                color: white;
+            }
+            .nav-link
+            {
+                color: white;
+            }
+            .nav-link:hover
+            {
+                background: #55616f;
+                color: white;
+            } 
+
             input{
                 border: none;
                 height:50%;
@@ -26,15 +45,14 @@
                 margin-left:30%;
                 
             }
-
         </style>    
 
     </head> 
     <body>
         <header>
-            <div class="card">
-                <nav class="navbar navbar-expand-lg navabr-light bg-light">
-                    <a class="navbar-brand " href="#" style="margin: 0"><img src="logo.png" class="img-fluid" alt="Responsive image" class="float-left" style="width: 16rem; height: 4.75rem  " ></a>
+            <div class="container-fliud">
+                <nav class="navbar navbar-expand-lg navbar-light head">
+                    <a class="navbar-brand" href="#"><img src='logo.png' width="320px"></a>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -49,22 +67,54 @@
                                     Home
                                     <span class="sr-only">(current)</span></button>
                             </li>
-
-
-                            <li class="nav-item" style="padding: 1%">
-                                <button type="button" class="btn btn-warning " id="moveproject" ></button>
+                            <li class="nav-item active" style="padding: 1%">
+                                <button type="button" class="btn btn-primary " id="moveproject" ></button>
                             </li>
-
-                            <li class="nav-item" style="padding:1%">
-                                <button type="button" class="btn btn-dark" onclick="location.href='index.html';">Sign Out</button>
-                            </li>
-
                         </ul>
                     </div>
-
                 </nav>
             </div>
-
+            
+            <nav class = "navbar navbar-expand-sm bg-dark navbar-dark" style="color:white;">
+                <button class="navbar-toggler" 
+                        type="button" 
+                        data-toggle="collapse" 
+                        data-target="#navBarMenu" 
+                        aria-controls="navBarMenu" 
+                        aria-expanded="false" 
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id = "navBarMenu">
+                    <ul class="nav">
+                        <li class = "nav-item">
+                            <a href="#" class="nav-link" data-toggle="collapse" data-target="#details">Details </a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class="nav-link" data-toggle="collapse" data-target="#skilltable">Skills </a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class="nav-link" data-toggle="collapse" data-target="#leavedetail">Leaves </a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class="nav-link" data-toggle="collapse" data-target="#leavedetail">Project(s) </a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class="nav-link" data-toggle="collapse" data-target="#projects">Reviews </a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class="nav-link" data-toggle="collapse" data-target="#projects">Policies </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <ul class = "nav navbar-right">
+                        <li class = "nav-item">
+                            <a href = "#" class="nav-link">Log-out </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         </header>
 
 

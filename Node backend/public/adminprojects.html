@@ -10,21 +10,22 @@
   </head>
 
 <body onload="DefaultFilter()">
-    <div class="container head">
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light head">
-            <a class="navbar-brand" href="#"><img src='logo.png' width="320px"></a>
-        </nav>
-    </div>
-    <nav class = "navbar navbar-expand-sm bg-dark navbar-dark" style="color:white;">
-      <button class="navbar-toggler" 
-              type="button" 
-              data-toggle="collapse" 
-              data-target="#navBarMenu" 
-              aria-controls="navBarMenu" 
-              aria-expanded="false" 
-              aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-      </button>
+        <header>
+            <div class="container-fliud">
+                <nav class="navbar navbar-expand-lg navbar-light head">
+                    <a class="navbar-brand" href="#"><img src='logo.png' width="320px"></a>
+                </nav>
+            </div>
+            <nav class = "navbar navbar-expand-sm bg-dark navbar-dark" style="color:white;">
+                <button class="navbar-toggler" 
+                        type="button" 
+                        data-toggle="collapse" 
+                        data-target="#navBarMenu" 
+                        aria-controls="navBarMenu" 
+                        aria-expanded="false" 
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
       <div class="collapse navbar-collapse" id = "navBarMenu">
           <ul class="nav">
               <li class = "nav-item">
@@ -39,7 +40,8 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Project(s)</a>
                 <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Add new project</a>
+                <a class="dropdown-item" href="http://127.0.0.1:55125/public/adminprojects.html">View all projects</a>
+                <a class="dropdown-item" href="http://127.0.0.1:55125/public/newproject.html">Add new project</a>
                 </div>
                 </li>
                 <li class = "nav-item">
@@ -53,11 +55,12 @@
         <div>
             <ul class = "nav navbar-right">
             <li class = "nav-item">
-                <a href = "#" class="nav-link">Log-out </a>
+                <a href = "http://127.0.0.1:55125/public/adminprojects.html" class="nav-link">Log-out </a>
             </li>
             </ul>
         </div>
      </nav>
+    </header>
         
     <div class="container-fluid select">
         <select class="selectpicker style" data-live-search="false" data-width="40%" font-size="20px" id="filtervalues" onchange="filterfunction()">
