@@ -76,7 +76,7 @@
                                 '<tr><td id = "Name">' + Data[i].FirstName+" "+Data[i].LastName+
                                 '</td><td id = "Designation">' + Data[i].Role +
                                 '</td><td id = "Email">'+ Data[i].Email+
-                                '</td><td id="B"><i id='+Data[i].EmployeeId+' class="fa fa-trash fa-1x" onclick="ondelete(this.id);" aria-hidden="true"></i>'+
+                                '</td><td id="B"><i id="'+Data[i].EmployeeId+" "+Data[i].Role+'" class="fa fa-trash fa-1x" onclick="ondelete(this.id);" aria-hidden="true"></i>'+
                                 '</td></tr>'
                             );
                         }
@@ -102,7 +102,7 @@
                                 
                             )
                             $('#getmember').append(
-                                '<option value="'+Data[i].Employeeid+'">'+ Data[i].FirstName +Data[i].LastName+
+                                '<option value="'+Data[i].Employeeid+'">'+ Data[i].FirstName +" "+Data[i].LastName+
                                 '</option>' 
                                 
                     )
@@ -195,8 +195,16 @@ function addmember(){
         }
 
 function ondelete(id){
-    
-    var employeeid = Number(id);
+    if(Role=="Project Owner")
+    {
+    var arr = id.split(" ");
+    console.log(arr)
+    var employeeid = Number(arr[0]);
+    if(arr[1] ==="Project")
+        {
+            alert("Cannot delete Project owner !!")
+        }
+    else{
 //    console.log(del_id);
     
        var x= confirm("Are you sure want to delete?");
@@ -208,8 +216,15 @@ function ondelete(id){
         contentType:"application/json;charset=utf-8",
         success: function(data){  
             alert("skill deleted");
+            location.reload();
         }
     });
-                      location.reload();
+            location.reload();vb
+                      
        }
     }
+    }
+    else{
+        alert("Not authorized to delete members")
+    }
+}

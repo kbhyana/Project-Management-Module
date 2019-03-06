@@ -156,8 +156,15 @@ app.get("/skills", function(req,res){
 })
 
 //POST API IN API HIT FALSE --> 0 TRUE--> 1
+// exec AddNewProject 'adad' , 4,'kjdska','fdsfd','2019-03-05',0 ;
+//(@Name Varchar(100),
+//                @Tenure int,
+//                @Client Varchar(100),
+//                @Description  Varchar(max),
+//                @DateAssigned date,
+//                @isPipeline bit)
  app.post("/projects", function(req , res){
-                var query = "insert into Projects values('"+req.body.Name+"',"+req.body.Tenure+",'"+req.body.Client+"','"+req.body.Description+"',"+req.body.IsFinished+","+req.body.Progress+",'"+req.body.DateAssigned+"',"+req.body.isPipeline+"); Select * from Projects where ProjectID = (SELECT MAX(ProjectID) FROM projects);"; 
+                var query = "exec AddNewProject '"+req.body.name+"',"+req.body.tenure+",'"+req.body.client+"','"+req.body.description+"','"+req.body.dateassigned+"',"+req.body.ispipeline+"; Select * from Projects where ProjectID = (SELECT MAX(ProjectID) FROM projects);"; 
                 executeQuery (res, query);
  });
 //insert into SkillsinProject values (1,1) skillid :y projectid in url
