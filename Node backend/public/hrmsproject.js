@@ -11,7 +11,7 @@
         }
     }
 
-         var ProjectID=getUrl("id");
+        var ProjectID=getUrl("id");
         console.log(ProjectID);
                 
                  var Role=getUrl("role");
@@ -75,7 +75,8 @@
                             $('#members').append(
                                 '<tr><td id = "Name">' + Data[i].FirstName+" "+Data[i].LastName+
                                 '</td><td id = "Designation">' + Data[i].Role +
-                                '</td><td id = "Email">' + Data[i].Email+
+                                '</td><td id = "Email">'+ Data[i].Email+
+                                '</td><td id="B"><i id='+Data[i].EmployeeId+' class="fa fa-trash fa-1x" onclick="ondelete(this.id);" aria-hidden="true"></i>'+
                                 '</td></tr>'
                             );
                         }
@@ -95,13 +96,13 @@
                         console.log(Data);
                        
                         for(i=0; i<Data.length;i++){
-                            $('#getmembers').append(
+                            $('#getskills').append(
                                 '<li>' + Data[i].Name+
                                 '</li>' 
                                 
                             )
                             $('#getmember').append(
-                                '<option id="'+Data[i].Employeeid+'">'+ Data[i].FirstName +Data[i].LastName+
+                                '<option value="'+Data[i].Employeeid+'">'+ Data[i].FirstName +Data[i].LastName+
                                 '</option>' 
                                 
                     )
@@ -160,11 +161,55 @@ function put(){
 
 
 
+function addmember(){
+            if( document.getElementById("getmember").value !="" && document.getElementById("getrole").value !="" )
+              {
+                console.log(document.getElementById("getmember").value);
+    
+            var member=JSON.stringify({  
+        "projectid": ProjectID,
+        "employeeid": document.getElementById("getmember").value,
+        "roleid": document.getElementById("getrole").value,
+                 });       
+            $.ajax({
+                url: 'http://localhost:8000/projects/addmember',
+                data: member,
+                type: 'POST',
+                dataType:"TEXT",
+                contentType: "application/json; charset=utf-8",
+                success: function(res){
+                    console.log(res);
+                    alert("Member Added");
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                        console.log('Error: ' + JSON.stringify(error));
+                        alert("No members to add .")
+                    },
+            });
+}
+    else {
+        alert("Please select all details.")
+    }
 
+        }
 
-
-
-
-
-
-
+function ondelete(id){
+    
+    var employeeid = Number(id);
+//    console.log(del_id);
+    
+       var x= confirm("Are you sure want to delete?");
+        
+       if(x){
+    $.ajax({
+        type: 'DELETE',
+        url: 'http://localhost:8000/projects/deletemember/'+employeeid+'/'+ProjectID,
+        contentType:"application/json;charset=utf-8",
+        success: function(data){  
+            alert("skill deleted");
+        }
+    });
+                      location.reload();
+       }
+    }

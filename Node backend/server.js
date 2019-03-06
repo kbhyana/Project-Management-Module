@@ -26,8 +26,8 @@ app.use(function (req, res, next) {
 //Initiallising connection string
 var dbConfig = {
     user:  "sa",
-    password: "anusha",
-    server: "CYG270",
+    password: "password",
+    server: "CYG385",
     database:"HRMS"
 };
 
@@ -167,7 +167,7 @@ app.post("/projects/skills/:projectid", function(req , res){
  });
 //EXEC spAddMember 2,2,2; projectid:x , employeeid:y , roleid:z
 app.post("/projects/addmember", function(req , res){
-                var query = "EXEC spAddMember "+req.body.projectid+"',"+req.body.employeeid+",'"+req.body.roleid+";"; 
+                var query = "EXEC spAddMember "+req.body.projectid+","+req.body.employeeid+","+req.body.roleid+";"; 
                 executeQuery (res, query);
  });
 //PUT API
@@ -175,10 +175,26 @@ app.post("/projects/addmember", function(req , res){
                 var query = "UPDATE Projects SET Name= '" + req.body.Name  +  "' , Tenure=  " + req.body.Tenure +",Client='"+ req.body.Client + "',Description = '"+req.body.Description+"', IsFinished="+req.body.IsFinished+", Progress =" +req.body.Progress+ ", DateAssigned ='"+req.body.DateAssigned+"', isPipeline = "+req.body.isPipeline+ " WHERE ProjectID= " +req.params.id+";Select * from Projects where ProjectID="  + req.params.id;
                 executeQuery (res, query);
 });
+// change project from ongoingtofinished
+app.put("/projects/ongoingtofinished/:projectid", function(req , res){
+     var query = "EXEC OngoingtoFinished" + req.params.projectid+";" ;
+     executeQuery (res, query);
+});
+
+// change project from PipelinetoOngoing
+app.put("/projects/pipelinetoongoing/:projectid", function(req , res){
+     var query = "EXEC PipelinetoOngoing" + req.params.projectid+";" ;
+     executeQuery (res, query);
+});
 
 // DELETE API
 app.delete("/projects/:id", function(req , res){
                 var query = "delete from Projects where Projectid = "+ req.params.id+"; select * from Projects;";
+                executeQuery (res, query);
+});
+// delete member in project
+app.delete("/projects/deletemember/:employeeid/:projectid", function(req , res){
+                var query = "delete from ProjectTeamDetails WHERE EmployeeID="+ req.params.employeeid+"and ProjectID="+ req.params.projectid+";"
                 executeQuery (res, query);
 });
 
@@ -186,7 +202,6 @@ app.delete("/projects/skills/:projectid/:skillid", function(req , res){
                 var query = "delete from SkillsinProject where ProjectId = "+ req.params.projectid+"and SkillId ="+ req.params.skillid+";"
                 executeQuery (res, query);
 });
-
 app.get("/user/projectdetails/:id", function(req , res){
                 var query = "EXEC spEmployeeindiffProjects "+ req.params.id;
                 executeQuery (res, query);
