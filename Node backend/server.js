@@ -26,8 +26,8 @@ app.use(function (req, res, next) {
 //Initiallising connection string
 var dbConfig = {
     user:  "sa",
-    password: "password",
-    server: "CYG385",
+    password: "anusha",
+    server: "CYG270",
     database:"HRMS"
 };
 
@@ -177,13 +177,13 @@ app.post("/projects/addmember", function(req , res){
 });
 // change project from ongoingtofinished
 app.put("/projects/ongoingtofinished/:projectid", function(req , res){
-     var query = "EXEC OngoingtoFinished" + req.params.projectid+";" ;
+     var query = "EXEC OngoingtoFinished " + req.params.projectid+";" ;
      executeQuery (res, query);
 });
 
 // change project from PipelinetoOngoing
 app.put("/projects/pipelinetoongoing/:projectid", function(req , res){
-     var query = "EXEC PipelinetoOngoing" + req.params.projectid+";" ;
+     var query = "EXEC PipelinetoOngoing " + req.params.projectid+";" ;
      executeQuery (res, query);
 });
 
