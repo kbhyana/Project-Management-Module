@@ -20,22 +20,25 @@
             console.log("Value chosen :" + " " + strUser);
             
             if(strUser=="All Projects")
-                link = "projects"
-            else if(strUser=="Pipeline Projects")
-                link = "projects/pipeline"
+                link = "/projects"
+            else if(strUser=="Pipelined Projects")
+                link = "/projects/pipeline"
             else if(strUser=="Completed Projects")
-                link = "projects/finished"
+                link = "/projects/finished"
             else if(strUser=="Ongoing Projects")
-                link = "projects/ongoing"
-            GETProjectsFiltered()
+                link = "/projects/ongoing"
+            GETProjectsFiltered();
         }    
         
+	var i;
         function GETProjectsFiltered()   //AJAX call for projects
         {
             $.ajax({
                     type: 'GET',
-                  url: 'http://localhost:8000/' + link,
+                  url: 'http://localhost:8000' + link,
                     success: function(Data) {
+                        $("#tablevalues tr td").remove();
+			    
                         projectsdata = Data;
                         console.log(projectsdata);
                         for(i=0; i<projectsdata.length;i++){
@@ -141,7 +144,8 @@
                     <th scope="col" style="background-color: lightblue">Project</th>
                     <th scope="col" style="background-color: lightblue">Client</th>
                     <th scope="col" style="background-color: lightblue">Progress</th>
-                </tr>
+                    <th scope="col" style="background-color: lightblue">More info</th>
+        	    </tr>
             </thead>
             <tbody>
             </tbody>
