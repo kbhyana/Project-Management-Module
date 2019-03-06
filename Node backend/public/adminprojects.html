@@ -61,7 +61,7 @@
     <style>
     html
     {
-      min-width: 500px;
+      min-width: 400px;
     }
     .head
     {
@@ -80,55 +80,72 @@
     }
     #tablevalues
     {
-        margin-left: 17%;
+
         margin-top: 2%;
-        width: 60%;
         border-collapse: collapse;
     }
     .button:hover
         {
             background: #e4e4e4;
         }
-
-
+    .nav-link
+        {
+            color: white;
+        }
+    .nav-link:hover
+        {
+            background: #55616f;
+            color: white;
+        }
+    
     </style>
   </head>
 
 <body onload="DefaultFilter()">
   <div class="container head">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light head">
-      <a class="navbar-brand" href="#"><img src='logo.png' width="300px"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Employee Details</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Task 1</a>
-              <a class="dropdown-item" href="#">Task 2</a>
-              <a class="dropdown-item" href="#">Task 3</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Sign out</a>
-          </li>
-        </ul>
-      </div>
+      <a class="navbar-brand" href="#"><img src='logo.png' width="320px"></a>
     </nav>
-  </div>
-
-  <div class="container-fluid select">
+ </div>
+ <nav class = "navbar navbar-expand-sm bg-dark navbar-dark" style="color:white;">
+                          <button class="navbar-toggler" 
+                                  type="button" 
+                                  data-toggle="collapse" 
+                                  data-target="#navBarMenu" 
+                                  aria-controls="navBarMenu" 
+                                  aria-expanded="false" 
+                                  aria-label="Toggle navigation">
+                                        <span class="navbar-toggler-icon"></span>
+                           </button>
+                           <div class="collapse navbar-collapse" id = "navBarMenu">
+                               <ul class="nav">
+                                   <li class = "nav-item">
+                                       <a href="#" class="nav-link" data-toggle="collapse" data-target="#details">Details </a>
+                                    </li>
+                                   <li class = "nav-item">
+                                       <a href = "#" class="nav-link" data-toggle="collapse" data-target="#skilltable">Skills </a>
+                                   </li>
+                                   <li class = "nav-item">
+                                       <a href = "#" class="nav-link" data-toggle="collapse" data-target="#leavedetail">Leaves </a>
+                                   </li>
+                                   <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Project(s)</a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">Add new project</a>
+                                            </div>
+                                    </li>
+                               </ul>
+                            </div>
+                            <div>
+                                <ul class = "nav navbar-right">
+                                    <li class = "nav-item">
+                                        <a href = "#" class="nav-link">Log-out </a>
+                                    </li>
+                                </ul>
+                            </div>
+                      </nav>
+        
+<div class="container-fluid select">
     <select class="selectpicker style" data-live-search="false" data-width="40%" font-size="20px" id="filtervalues" onchange="filterfunction()">
         <option>All Projects</option>
         <option>Ongoing Projects</option>
