@@ -214,3 +214,24 @@ function updatepo(){
         }
            });
 }
+
+function finishedproject(){
+   var y= confirm("Are you sure want to finish this project?");
+
+    if(y){
+    
+    $.ajax({
+        url: 'http://localhost:8000/projects/ongoingtofinished/'+projectid,
+        type: 'PUT',
+        success:function(res){
+            alert("Project moved to finished");
+            location.relaod();
+        },
+        error: function (xhr, status, error) {
+        console.log('Error: ' + JSON.stringify(error));
+
+        }
+        
+});
+}
+}
