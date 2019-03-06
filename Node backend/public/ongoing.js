@@ -12,20 +12,19 @@
 }*/
 
 var url = new URL(window.location.href);
-            var id = url.searchParams.get("id");
-            id=Number(id);
-        var projectid= id;
-        console.log(projectid);
+var projectid = url.searchParams.get("id");
+projectid=Number(projectid);
+console.log(projectid);
 
 $(document).ready(function(){
 
-    
+
     var info;
     var finished;
     console.log("hello"); 
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8000/Projects/'+projectid,
+        url: 'http://localhost:8000/projects/'+projectid,
 
         success: function(Data) {
             info=Data[0];
@@ -132,12 +131,12 @@ $.ajax({
     success: function(res){
 
         for(k=0; k<res.length;k++){
-                
+
             $('#skills').append(
 
                 '<tr><td id = "S">' + res[k].Name+
                 '</td><td id="B"><i id='+res[k].SkillId+' class="fa fa-trash fa-1x" onclick="ondelete(this.id);" aria-hidden="true"></i>' +
-'</td></tr>');
+                '</td></tr>');
 
             pskills[k]=res[k].SkillId;
 
@@ -153,51 +152,50 @@ function updateskills(){
     var  technology = document.getElementById("sel2").value;
     setTimeout(function(){console.log(technology)},3000);
     console.log(technology);
-    
+
     var dataToSend=JSON.stringify({
-                    "skillid": technology
+        "skillid": technology
     });
-    
+
     $.ajax({
         url:'http://localhost:8000/projects/skills/'+projectid,
         type:'POST',
         data: dataToSend,
-       dataType:"TEXT",
+        dataType:"TEXT",
         contentType: "application/json; charset=utf-8",
         success: function(res){
-          alert("New Skill Added");
+            alert("New Skill Added");
             location.reload();
         },
         error: function (xhr, status, error) {
-                        console.log('Error: ' + JSON.stringify(error));
-                    },
+            console.log('Error: ' + JSON.stringify(error));
+        },
     });
-    }
-    
+}
+
 
 function ondelete(id){
-    
+
     var del_id = Number(id);
     console.log(del_id);
-    
-       var x= confirm("Are you sure want to delete?");
+
+    var x= confirm("Are you sure want to delete?");
+
+    if(x){
+        $.ajax({
+            type: 'DELETE',
+            url: 'http://localhost:8000/projects/skills/'+projectid+'/'+del_id,
+            success:function(){ window.location =("Ongoing.html?id="+projectid);}
+            
         
-       if(x){
-    $.ajax({
-        type: 'DELETE',
-        url: 'http://localhost:8000/projects/skills/'+projectid+'/'+del_id,
-        contentType:"application/json;charset=utf-8",
-        success: function(data){  
-            alert("skill deleted");
-        }
-    });
-                      window.location="Ongoing.html";
-       }
+        });
+        window.location = ("Ongoing.html?id="+projectid);
     }
+}
 
 function addtofinishedproject(){
-    
+
     $.ajax({
-        
+
     })
 }
