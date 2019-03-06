@@ -94,7 +94,7 @@ $.ajax({
     success: function(res){
         console.log(res);
         $.each(res, function(i, item){
-            $('#sel').append($('<option>',{
+            $('#selectProjectOwner').append($('<option>',{
                 value:item.EmployeeId,
                 text:item.FirstName+ " "+item.LastName
             }));
@@ -111,7 +111,7 @@ $.ajax({
     success: function(res){
         console.log(res);
         $.each(res, function(i, item){
-            $('#sel2').append($('<option>',{
+            $('#selectSkills').append($('<option>',{
                 value:item.Id,
                 text:item.Name
             }));
@@ -149,7 +149,7 @@ $.ajax({
 console.log(pskills);
 
 function updateskills(){
-    var  technology = document.getElementById("sel2").value;
+    var  technology = document.getElementById("selectSkills").value;
     setTimeout(function(){console.log(technology)},3000);
     console.log(technology);
 
@@ -186,16 +186,31 @@ function ondelete(id){
             type: 'DELETE',
             url: 'http://localhost:8000/projects/skills/'+projectid+'/'+del_id,
             success:function(){ window.location =("Ongoing.html?id="+projectid);}
-            
-        
+
+
         });
         window.location = ("Ongoing.html?id="+projectid);
     }
 }
 
-function addtofinishedproject(){
-
-    $.ajax({
-
-    })
+function updatepo(){
+    var po = document.getElementById("selectProjectOwner").value;
+    var dataToSend=JSON.stringify({
+        "employeeid": po
+    });
+    $.ajax({            url:'http://localhost:8000/projects/changeproductowner/'+projectid,
+            type: 'PUT',
+            data: dataToSend,
+            dataType:"TEXT",
+            contentType: "application/json; charset=utf-8",
+            success:function(res){
+                console.log(dataToSend);
+                alert("Project Owner Changed");
+                location.reload();
+                
+            },
+            error: function (xhr, status, error) {
+            console.log('Error: ' + JSON.stringify(error));
+        }
+           });
 }
