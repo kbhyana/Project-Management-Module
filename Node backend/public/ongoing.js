@@ -1,15 +1,3 @@
-/*var getUrl = function getUrl(param){
-    var pageUrl = window.location.search.substring(1);
-    var urlVariables = pageUrl.split("&");
-    var parameterName;
-    var i;
-    for(i=0; i<urlVariables.length; i++){
-        parameterName = urlVariables[i].split("=");
-        if(parameterName[0] == param){
-            return  parameterName[1] == undefined ? true : decodeURIComponent(parameterName[1]);
-        }
-    }
-}*/
 
 var url = new URL(window.location.href);
 var projectid = url.searchParams.get("id");
@@ -137,17 +125,21 @@ $.ajax({
     type:'GET',
     dataType: 'JSON',
     success: function(res){
-
+        console.log(res);
         for(k=0; k<res.length;k++){
-
+            if(res[k].IsFinished==false){
             $('#skills').append(
 
                 '<tr><td id = "S">' + res[k].Name+
                 '</td><td id="B"><i id='+res[k].SkillId+' class="fa fa-trash fa-1x" onclick="ondelete(this.id);" aria-hidden="true"></i>' +
                 '</td></tr>');
+            }
 
+            else{
+                $('#skills').append(
+                '<tr><td id = "S">' + res[k].Name+ '</td></tr>');   
+            }
             pskills[k]=res[k].SkillId;
-
         }
         setTimeout(function(){console.log(pskills)},3000);
     }
@@ -215,7 +207,6 @@ function updatepo(){
                 console.log(dataToSend);
                 alert("Project Owner Changed");
                 location.reload();
-
             },
             error: function (xhr, status, error) {
                 console.log('Error: ' + JSON.stringify(error));
@@ -236,14 +227,14 @@ function finishedproject(){
             type: 'PUT',
             success:function(res){
                 alert("Project moved to finished");
-                location.relaod();
+                
             },
             error: function (xhr, status, error) {
                 console.log('Error: ' + JSON.stringify(error));
 
-            }
-
+            },
         });
+        location.reload();
     }
 }
 
@@ -257,13 +248,13 @@ function ongoingproject(){
             type: 'PUT',
             success:function(res){
                 alert("Project moved to live");
-                location.relaod();
+                location.reload();
             },
             error: function (xhr, status, error) {
                 console.log('Error: ' + JSON.stringify(error));
 
-            }
-
+            },
         });
+        location.reload();
     }
 }
