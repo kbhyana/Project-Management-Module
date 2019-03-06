@@ -1,0 +1,37 @@
+html
+{
+  min-width: 400px;
+}
+.head
+{
+  height: 90px;
+}
+.select
+{
+  text-align: center;
+  margin-top:3%;
+}
+.filter
+{
+  text-align: center;
+  margin-top:3%;
+  width: 30%;
+}
+#tablevalues
+{
+    margin-top: 2%;
+    border-collapse: collapse;
+}
+.button:hover
+{
+    background: #e4e4e4;
+}
+.nav-link
+{
+    color: white;
+}
+.nav-link:hover
+{
+    background: #55616f;
+    color: white;
+} 
