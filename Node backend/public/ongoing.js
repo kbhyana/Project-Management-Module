@@ -35,13 +35,21 @@ $(document).ready(function(){
 
             finished=Number(info.IsFinished);
             console.log(finished);
-
-
             document.getElementById("skillbt").style.visibility="visible";
+
             document.getElementById("demo").style.visibility="visible";
+            
+            document.getElementById("moveproject").setAttribute("onclick","finishedproject()");
+            
+            document.getElementById("moveproject").innerHTML="Move To Finished";
+
+
             if(finished==1){
                 document.getElementById("skillbt").style.visibility="hidden";
                 document.getElementById("demo").style.visibility="hidden";
+                document.getElementById("moveproject").setAttribute("onclick","ongoingproject()");
+                document.getElementById("moveproject").innerHTML="Make it Live";
+
 
             }
         }
@@ -207,31 +215,55 @@ function updatepo(){
                 console.log(dataToSend);
                 alert("Project Owner Changed");
                 location.reload();
-                
+
             },
             error: function (xhr, status, error) {
-            console.log('Error: ' + JSON.stringify(error));
-        }
+                console.log('Error: ' + JSON.stringify(error));
+            }
            });
 }
 
+
+
 function finishedproject(){
-   var y= confirm("Are you sure want to finish this project?");
+    
+    var y= confirm("Are you sure want to finish this project?");
 
     if(y){
-    
-    $.ajax({
-        url: 'http://localhost:8000/projects/ongoingtofinished/'+projectid,
-        type: 'PUT',
-        success:function(res){
-            alert("Project moved to finished");
-            location.relaod();
-        },
-        error: function (xhr, status, error) {
-        console.log('Error: ' + JSON.stringify(error));
 
-        }
-        
-});
+        $.ajax({
+            url: 'http://localhost:8000/projects/ongoingtofinished/'+projectid,
+            type: 'PUT',
+            success:function(res){
+                alert("Project moved to finished");
+                location.relaod();
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + JSON.stringify(error));
+
+            }
+
+        });
+    }
 }
+
+function ongoingproject(){
+    var y= confirm("Are you sure want to make this project live?");
+
+    if(y){
+
+        $.ajax({
+            url: 'http://localhost:8000/projects/finishedtoongoing/'+projectid,
+            type: 'PUT',
+            success:function(res){
+                alert("Project moved to live");
+                location.relaod();
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + JSON.stringify(error));
+
+            }
+
+        });
+    }
 }

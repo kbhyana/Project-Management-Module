@@ -188,7 +188,15 @@ app.put("/projects/ongoingtofinished/:projectid", function(req , res){
      executeQuery (res, query);
 });
 
-// change project from PipelinetoOngoing
+//change project from finishedtoongoing
+app.put("/projects/finishedtoongoing/:projectid", function(req , res){
+     var query = "EXEC FinishedtoOngoing " + req.params.projectid+";" ;
+     executeQuery (res, query);
+});
+
+
+
+
 app.put("/projects/pipelinetoongoing/:projectid", function(req , res){
      var query = "EXEC PipelinetoOngoing " + req.params.projectid+";" ;
      executeQuery (res, query);
