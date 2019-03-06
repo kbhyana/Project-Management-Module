@@ -6,7 +6,7 @@
 
         <title>Projects</title>
 
-        <link  rel="stylesheet" href="home.css">
+<!--        <link  rel="stylesheet" href="home.css">-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -46,7 +46,7 @@
 
 
                             <li class="nav-item" style="padding: 1%">
-                                <button type="button" class="btn btn-primary disabled " onclick="addtofinishedproject();">Add to Finished </button>
+                                <button type="button" class="btn btn-warning " onclick="finishedproject();">Move to Finished </button>
                             </li>
 
                             <li class="nav-item" style="padding:1%">
@@ -86,7 +86,7 @@
                                 <form>
                                     <div class="form-group">
                                         <label for="proejctowner-name" class="col-form-label">Project Owner:</label>
-                                        <select class="form-control" id="sel">
+                                        <select class="form-control" id="selectProjectOwner">
                                         </select>
                                     </div>
                                 </form>
@@ -134,7 +134,7 @@
                             <form>
                                 <div class="form-group">
                                     <label for="skills" class="col-form-label">Skills:</label>
-                                    <select class="form-control" id="sel2" style="width: 100%">
+                                    <select class="form-control" id="selectSkills" style="width: 100%">
                                     </select>
                                 </div>
                             </form>
