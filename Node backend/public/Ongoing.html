@@ -6,11 +6,11 @@
 
         <title>Projects</title>
 
-        <link  rel="stylesheet" href="home.css">
+<!--        <link  rel="stylesheet" href="home.css">-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
         <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 
         <script src="ongoing.js"></script>
@@ -39,14 +39,14 @@
                         <ul class="navbar-nav ml-auto my-2 my-lg-0">
                             <li class="nav-item active" style="padding: 1%">
                                 <button type="button" class="btn btn-primary"
-                                        onclick="location.href='home.html';">
+                                        onclick="location.href='adminprojects.html';">
                                     Home
                                     <span class="sr-only">(current)</span></button>
                             </li>
 
 
                             <li class="nav-item" style="padding: 1%">
-                                <button type="button" class="btn btn-primary disabled " onclick="location.href='projects.html';">Current  Projects </button>
+                                <button type="button" class="btn btn-warning " onclick="finishedproject();">Move to Finished </button>
                             </li>
 
                             <li class="nav-item" style="padding:1%">
@@ -86,7 +86,7 @@
                                 <form>
                                     <div class="form-group">
                                         <label for="proejctowner-name" class="col-form-label">Project Owner:</label>
-                                        <select class="form-control" id="sel">
+                                        <select class="form-control" id="selectProjectOwner">
                                         </select>
                                     </div>
                                 </form>
@@ -110,11 +110,12 @@
             </table>
             <hr>
 
-            <h4>Skills<span><button type="button" class="btn btn-primary" data-toggle="modal" data-target=#myModal2 id="skillbt" style="float:right">Edit</button></span></h4>
+            <h4>Skills<span><button type="button" class="btn btn-primary" data-toggle="modal" data-target=#myModal2 id="skillbt" style="float:right">Add Skills</button></span></h4>
             <table class="table table-hover"  id="skills">
                 <thead>
                     <tr class="table-success">
                         <th scope="col" id="S">Skills</th>
+                        <th scope="col" id="B" style="width:20px"></th>
                     </tr>
                 </thead>
             </table>
@@ -133,7 +134,7 @@
                             <form>
                                 <div class="form-group">
                                     <label for="skills" class="col-form-label">Skills:</label>
-                                    <select class="form-control" id="sel2" style="width: 100%">
+                                    <select class="form-control" id="selectSkills" style="width: 100%">
                                     </select>
                                 </div>
                             </form>

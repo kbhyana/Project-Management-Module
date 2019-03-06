@@ -1,4 +1,4 @@
-var getUrl = function getUrl(param){
+/*var getUrl = function getUrl(param){
     var pageUrl = window.location.search.substring(1);
     var urlVariables = pageUrl.split("&");
     var parameterName;
@@ -9,19 +9,22 @@ var getUrl = function getUrl(param){
             return  parameterName[1] == undefined ? true : decodeURIComponent(parameterName[1]);
         }
     }
-}
+}*/
+
+var url = new URL(window.location.href);
+var projectid = url.searchParams.get("id");
+projectid=Number(projectid);
+console.log(projectid);
 
 $(document).ready(function(){
 
-    var ProjectID=getUrl("id");
-    console.log(ProjectID);
 
     var info;
     var finished;
     console.log("hello"); 
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8000/Projects/1',
+        url: 'http://localhost:8000/projects/'+projectid,
 
         success: function(Data) {
             info=Data[0];
@@ -52,7 +55,7 @@ $(document).ready(function(){
     //    
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8000/Projects/emprole/1',
+        url: 'http://localhost:8000/Projects/emprole/'+projectid,
         success: function(Data) {
             console.log(Data);
             for(i=0; i<Data.length;i++){
@@ -91,7 +94,7 @@ $.ajax({
     success: function(res){
         console.log(res);
         $.each(res, function(i, item){
-            $('#sel').append($('<option>',{
+            $('#selectProjectOwner').append($('<option>',{
                 value:item.EmployeeId,
                 text:item.FirstName+ " "+item.LastName
             }));
@@ -108,8 +111,8 @@ $.ajax({
     success: function(res){
         console.log(res);
         $.each(res, function(i, item){
-            $('#sel2').append($('<option>',{
-                value:item.SkillId,
+            $('#selectSkills').append($('<option>',{
+                value:item.Id,
                 text:item.Name
             }));
         })
@@ -122,7 +125,7 @@ var sid=[];
 
 //Get the skills of the project
 $.ajax({
-    url:'http://localhost:8000/projects/skills/1',
+    url:'http://localhost:8000/projects/skills/'+projectid,
     type:'GET',
     dataType: 'JSON',
     success: function(res){
@@ -132,6 +135,7 @@ $.ajax({
             $('#skills').append(
 
                 '<tr><td id = "S">' + res[k].Name+
+                '</td><td id="B"><i id='+res[k].SkillId+' class="fa fa-trash fa-1x" onclick="ondelete(this.id);" aria-hidden="true"></i>' +
                 '</td></tr>');
 
             pskills[k]=res[k].SkillId;
@@ -145,17 +149,89 @@ $.ajax({
 console.log(pskills);
 
 function updateskills(){
-    var  technology = document.getElementById("sel2").value;
+    var  technology = document.getElementById("selectSkills").value;
+    setTimeout(function(){console.log(technology)},3000);
     console.log(technology);
-    pskills=pskills.concat(technology);
-    console.log(pskills);
+
+    var dataToSend=JSON.stringify({
+        "skillid": technology
+    });
+
+    $.ajax({
+        url:'http://localhost:8000/projects/skills/'+projectid,
+        type:'POST',
+        data: dataToSend,
+        dataType:"TEXT",
+        contentType: "application/json; charset=utf-8",
+        success: function(res){
+            alert("New Skill Added");
+            location.reload();
+        },
+        error: function (xhr, status, error) {
+            console.log('Error: ' + JSON.stringify(error));
+        },
+    });
 }
 
 
+function ondelete(id){
 
-//console.log(pskills);
+    var del_id = Number(id);
+    console.log(del_id);
 
-//Update the Skills
+    var x= confirm("Are you sure want to delete?");
+
+    if(x){
+        $.ajax({
+            type: 'DELETE',
+            url: 'http://localhost:8000/projects/skills/'+projectid+'/'+del_id,
+            success:function(){ window.location =("Ongoing.html?id="+projectid);}
 
 
+        });
+        window.location = ("Ongoing.html?id="+projectid);
+    }
+}
 
+function updatepo(){
+    var po = document.getElementById("selectProjectOwner").value;
+    var dataToSend=JSON.stringify({
+        "employeeid": po
+    });
+    $.ajax({            url:'http://localhost:8000/projects/changeproductowner/'+projectid,
+            type: 'PUT',
+            data: dataToSend,
+            dataType:"TEXT",
+            contentType: "application/json; charset=utf-8",
+            success:function(res){
+                console.log(dataToSend);
+                alert("Project Owner Changed");
+                location.reload();
+                
+            },
+            error: function (xhr, status, error) {
+            console.log('Error: ' + JSON.stringify(error));
+        }
+           });
+}
+
+function finishedproject(){
+   var y= confirm("Are you sure want to finish this project?");
+
+    if(y){
+    
+    $.ajax({
+        url: 'http://localhost:8000/projects/ongoingtofinished/'+projectid,
+        type: 'PUT',
+        success:function(res){
+            alert("Project moved to finished");
+            location.relaod();
+        },
+        error: function (xhr, status, error) {
+        console.log('Error: ' + JSON.stringify(error));
+
+        }
+        
+});
+}
+}

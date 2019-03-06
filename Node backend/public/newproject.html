@@ -7,14 +7,10 @@
 
         <script src="https://code.jquery.com/jquery-3.3.1.js"
                 integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-                crossorigin="anonymous"></script>
-
-
-
-
-
-
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+                crossorigin="anonymous">
+        </script>
+          <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
         <!-- Materials Guideline -->
@@ -25,7 +21,7 @@
         <!-- getUrl("id");
 -->
 
-        <script src="hrmsproject.js"></script> 
+        <script src="newproject.js"></script> 
         <style>
 
             <style>
@@ -122,8 +118,10 @@
             text-align: center;
             }
             */
+           
+            
             .footer {
-                position: fixed;
+                
                 left: 0;
                 bottom: 0;
                 width: 100%;
@@ -132,6 +130,7 @@
                 color: black;
                 text-align: center;
             }
+
 
 
             .heading{
@@ -193,23 +192,33 @@
                 </tr>
                 <tr>
                     <td class="label"><h4>Status:</h4></td><td class="input"><span> <select id="status"  >
-                    <option value = "ongoing">Ongoing</option>
-                    <option value = "pipeline">Pipeline</option>
+                    <option value = "0">Ongoing</option>
+                    <option value = "1">Pipeline</option>
                     </select></span></td>
                 </tr>
                 <tr>
-                    <td class="label"><h4>Description:</h4></td><td class="input"><span><textarea rows="2" cols="30" name="comment" >
+                  <td class="label"><h4>Tenure:</h4></td><td class="input"><span><input id="tenure" ></span></td>  
+                </tr>
+                
+                 <tr>
+                  <td class="label"><h4>Date Assigned:</h4></td><td class="input"><span><input id="date" type="date" ></span></td>  
+                </tr>
+                
+                <tr>
+                    <td class="label"><h4>Description:</h4></td><td class="input"><span><textarea  id="description" rows="2" cols="30" name="comment" >
 </textarea></span></td>
                 </tr>
 
 
 
             </table>
+            
             <div class="buttons" align="center">
-            <button id="skill" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addskill">Add Skill</button>
+             <button id="addproject" type="button" class="btn btn-primary" onclick="addproject()">Add Project</button>
+            <button id="skill" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addskill">Add Skill</button>
 
 
-            <button id="member" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Member</button>
+            
             </div>
         </div>
 
@@ -223,11 +232,19 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
+                       <form>
                         <select multiple="true" id="skill"  class="js-example-basic-multiple" style="width: 100%">
                             <option value = "ongoing">Ongoing</option>
                             <option value = "pipeline">Pipeline</option>
                         </select>
-
+                         <div class="form-group">
+                                <label for="skill suggestions" class="col-form-label">Skills required for Project</label>
+                                <select id="skilld" multiple="true" class="js-example-basic-multiple" style="width: 100%">
+                                <option value = "ongoing">Ongoing</option>
+                                </select>
+                            
+                            </div>
+                        </form>
                         <button  class="btn btn-primary" onclick="put()">Submit</button>
 
 
@@ -236,9 +253,11 @@
 
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+                <div class="footer text-center py-3" style="background-color: #f5f5f5">
+            <p>
+                © 2019 Copyright: Cygrp ||Bootcamp
+            </p>
+        </div>
             </div>
 
         </div>
@@ -260,39 +279,12 @@
         </div>
 
     </body>
-
-
-    <script>
-
-
-        var slider = document.getElementById("myRange");
-        var output = document.getElementById("demo");
-        output.value = slider.value;
-
-        slider.oninput = function() {
-            output.value = this.value;
-        }
-
-
-
-
-
-
-$(document).ready(function() {
-            $('.js-example-basic-multiple').select2();
-            $("js-example-basic-multiple").select2({
-                width: 'resolve' });
-        })
-
-
-
-
-
-
-
+    
+    
+     <script>
+    
+    console.log(document.getElementById("date").value)
     </script>
-
-
 </html>
 <!--
 
@@ -300,6 +292,8 @@ $(document).ready(function() {
 <script  src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 -->
+
+<script  src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script data-brackets-id='7431' src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
