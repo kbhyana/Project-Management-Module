@@ -187,9 +187,7 @@
                 <tr>
                     <td class="label"><h4>Client Name:</h4></td><td class="input"><span><input id="client" ></span></td>
                 </tr>
-                <tr>
-                    <td class="label"><h4>Project Owner:</h4></td><td class="input"><span><select id="teamlead" ></select></span></td>
-                </tr>
+               
                 <tr>
                     <td class="label"><h4>Status:</h4></td><td class="input"><span> <select id="status"  >
                     <option value = "0">Ongoing</option>
@@ -214,8 +212,8 @@
             </table>
             
             <div class="buttons" align="center">
-             <button id="addproject" type="button" class="btn btn-primary" onclick="addproject()">Add Project</button>
-            <button id="skill" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addskill">Add Skill</button>
+             <button id="addproject" type="button" class="btn btn-primary" onclick="addproject()" data-toggle="modal" data-target="#addskill">Add Project</button>
+<!--            <button id="skill" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addskill">Add Skill</button>-->
 
 
             
@@ -224,18 +222,20 @@
 
         <!-- Modal -->
         <div class="modal fade" id="addskill" role="dialog">
-            <div class="modal-dialog">
+            <div id="ownerskill" class="modal-dialog">
 
                 <!-- Modal content-->
                 <div class="modal-content">
+<!--
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
+-->
                     <div class="modal-body">
                        <form>
-                        <select multiple="true" id="skill"  class="js-example-basic-multiple" style="width: 100%">
-                            <option value = "ongoing">Ongoing</option>
-                            <option value = "pipeline">Pipeline</option>
+                           <label for="skill suggestions" class="col-form-label">Project Owner</label>
+                        <select id="projectowner"  class="js-example-basic-multiple" style="width: 100%">
+                            
                         </select>
                          <div class="form-group">
                                 <label for="skill suggestions" class="col-form-label">Skills required for Project</label>
@@ -245,7 +245,7 @@
                             
                             </div>
                         </form>
-                        <button  class="btn btn-primary" onclick="put()">Submit</button>
+                        <button  class="btn btn-primary" onclick="addownerskill()">Submit</button>
 
 
 
@@ -253,14 +253,10 @@
 
                     </div>
                 </div>
-                <div class="footer text-center py-3" style="background-color: #f5f5f5">
-            <p>
-                © 2019 Copyright: Cygrp ||Bootcamp
-            </p>
-        </div>
+                
             </div>
-
         </div>
+        
 
 
 

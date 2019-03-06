@@ -1,15 +1,3 @@
-/*var getUrl = function getUrl(param){
-    var pageUrl = window.location.search.substring(1);
-    var urlVariables = pageUrl.split("&");
-    var parameterName;
-    var i;
-    for(i=0; i<urlVariables.length; i++){
-        parameterName = urlVariables[i].split("=");
-        if(parameterName[0] == param){
-            return  parameterName[1] == undefined ? true : decodeURIComponent(parameterName[1]);
-        }
-    }
-}*/
 
 var url = new URL(window.location.href);
 var projectid = url.searchParams.get("id");
@@ -35,13 +23,21 @@ $(document).ready(function(){
 
             finished=Number(info.IsFinished);
             console.log(finished);
-
-
             document.getElementById("skillbt").style.visibility="visible";
+
             document.getElementById("demo").style.visibility="visible";
+            
+            document.getElementById("moveproject").setAttribute("onclick","finishedproject()");
+            
+            document.getElementById("moveproject").innerHTML="Move To Finished";
+
+
             if(finished==1){
                 document.getElementById("skillbt").style.visibility="hidden";
                 document.getElementById("demo").style.visibility="hidden";
+                document.getElementById("moveproject").setAttribute("onclick","ongoingproject()");
+                document.getElementById("moveproject").innerHTML="Make it Live";
+
 
             }
         }
@@ -129,17 +125,21 @@ $.ajax({
     type:'GET',
     dataType: 'JSON',
     success: function(res){
-
+        console.log(res);
         for(k=0; k<res.length;k++){
-
+            if(res[k].IsFinished==false){
             $('#skills').append(
 
                 '<tr><td id = "S">' + res[k].Name+
                 '</td><td id="B"><i id='+res[k].SkillId+' class="fa fa-trash fa-1x" onclick="ondelete(this.id);" aria-hidden="true"></i>' +
                 '</td></tr>');
+            }
 
+            else{
+                $('#skills').append(
+                '<tr><td id = "S">' + res[k].Name+ '</td></tr>');   
+            }
             pskills[k]=res[k].SkillId;
-
         }
         setTimeout(function(){console.log(pskills)},3000);
     }
@@ -207,31 +207,54 @@ function updatepo(){
                 console.log(dataToSend);
                 alert("Project Owner Changed");
                 location.reload();
-                
             },
             error: function (xhr, status, error) {
-            console.log('Error: ' + JSON.stringify(error));
-        }
+                console.log('Error: ' + JSON.stringify(error));
+            }
            });
 }
 
+
+
 function finishedproject(){
-   var y= confirm("Are you sure want to finish this project?");
+    
+    var y= confirm("Are you sure want to finish this project?");
 
     if(y){
-    
-    $.ajax({
-        url: 'http://localhost:8000/projects/ongoingtofinished/'+projectid,
-        type: 'PUT',
-        success:function(res){
-            alert("Project moved to finished");
-            location.relaod();
-        },
-        error: function (xhr, status, error) {
-        console.log('Error: ' + JSON.stringify(error));
 
-        }
-        
-});
+        $.ajax({
+            url: 'http://localhost:8000/projects/ongoingtofinished/'+projectid,
+            type: 'PUT',
+            success:function(res){
+                alert("Project moved to finished");
+                
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + JSON.stringify(error));
+
+            },
+        });
+        location.reload();
+    }
 }
+
+function ongoingproject(){
+    var y= confirm("Are you sure want to make this project live?");
+
+    if(y){
+
+        $.ajax({
+            url: 'http://localhost:8000/projects/finishedtoongoing/'+projectid,
+            type: 'PUT',
+            success:function(res){
+                alert("Project moved to live");
+                location.reload();
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + JSON.stringify(error));
+
+            },
+        });
+        location.reload();
+    }
 }
