@@ -9,6 +9,7 @@ $(document).ready(function(){
 
     var info;
     var finished;
+    var pipeline;
     console.log("hello"); 
     $.ajax({
         type: 'GET',
@@ -22,6 +23,8 @@ $(document).ready(function(){
             document.getElementById("client").value=info.Client;
 
             finished=Number(info.IsFinished);
+            pipelined=Number(info.isPipeline);
+
             console.log(finished);
             document.getElementById("skillbt").style.visibility="visible";
 
@@ -40,15 +43,20 @@ $(document).ready(function(){
 
 
             }
+            
+             else if(pipelined==1){
+//                document.getElementById("skillbt").style.visibility="hidden";
+                document.getElementById("demo").style.visibility="hidden";
+                document.getElementById("moveproject").setAttribute("onclick","ongoingproject2()");
+                document.getElementById("moveproject").innerHTML="Make it Live";
+
+
+            }
+
         }
     });
 
-
-
-
-
-
-    //    
+    
     $.ajax({
         type: 'GET',
         url: 'http://localhost:8000/Projects/emprole/'+projectid,
@@ -117,7 +125,6 @@ $.ajax({
 
 
 var pskills=[];
-var sid=[];
 
 //Get the skills of the project
 $.ajax({
@@ -257,6 +264,28 @@ function ongoingproject(){
 
         $.ajax({
             url: 'http://localhost:8000/projects/finishedtoongoing/'+projectid,
+            type: 'PUT',
+            success:function(res){
+                alert("Project moved to live");
+                location.reload();
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + JSON.stringify(error));
+
+            },
+        });
+        location.reload();
+    }
+}
+
+
+function ongoingproject2(){
+    var y= confirm("Are you sure want to make this project live?");
+
+    if(y){
+
+        $.ajax({
+            url: 'http://localhost:8000/projects/pipelinetoongoing/'+projectid,
             type: 'PUT',
             success:function(res){
                 alert("Project moved to live");
