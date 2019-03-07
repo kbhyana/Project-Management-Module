@@ -152,12 +152,21 @@ function updateskills(){
     var  technology = document.getElementById("selectSkills").value;
     setTimeout(function(){console.log(technology)},3000);
     console.log(technology);
-
-    var dataToSend=JSON.stringify({
+    console.log(pskills);
+    var check=0;
+    for(var i = 0;i< pskills.length;i++){
+        if (pskills[i]==technology){
+        alert("Skill already exists")
+            check=1;
+        }
+        
+    }
+    if(check==0){
+        var dataToSend=JSON.stringify({
         "skillid": technology
-    });
-
-    $.ajax({
+        });
+                
+        $.ajax({
         url:'http://localhost:8000/projects/skills/'+projectid,
         type:'POST',
         data: dataToSend,
@@ -170,7 +179,10 @@ function updateskills(){
         error: function (xhr, status, error) {
             console.log('Error: ' + JSON.stringify(error));
         },
-    });
+    });            
+        
+    }
+    
 }
 
 

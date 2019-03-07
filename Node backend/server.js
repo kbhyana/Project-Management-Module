@@ -26,8 +26,8 @@ app.use(function (req, res, next) {
 //Initiallising connection string
 var dbConfig = {
     user:  "sa",
-    password: "Vatsal@123",
-    server: "CYG317",
+    password: "anusha",
+    server: "CYG270",
     database:"HRMS"
 };
 
