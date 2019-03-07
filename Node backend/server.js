@@ -26,8 +26,8 @@ app.use(function (req, res, next) {
 //Initiallising connection string
 var dbConfig = {
     user:  "sa",
-    password: "anusha",
-    server: "CYG270",
+    password: "password",
+    server: "CYG385",
     database:"HRMS"
 };
 
@@ -164,7 +164,7 @@ app.get("/skills", function(req,res){
 //                @DateAssigned date,
 //                @isPipeline bit)
  app.post("/projects", function(req , res){
-                var query = "exec AddNewProject '"+req.body.name+"',"+req.body.tenure+",'"+req.body.client+"','"+req.body.description+"','"+req.body.dateassigned+"',"+req.body.ispipeline+"; Select * from Projects where ProjectID = (SELECT MAX(ProjectID) FROM projects);"; 
+                var query = "exec AddNewProject '"+req.body.name+"',"+req.body.tenure+",'"+req.body.client+"','"+req.body.description+"','"+req.body.dateassigned+"',"+req.body.ispipeline+"; Select * from Projects where ProjectId = (SELECT MAX(ProjectId) FROM projects);"; 
                 executeQuery (res, query);
  });
 //insert into SkillsinProject values (1,1) skillid :y projectid in url
@@ -209,7 +209,7 @@ app.delete("/projects/:id", function(req , res){
 });
 // delete member in project
 app.delete("/projects/deletemember/:employeeid/:projectid", function(req , res){
-                var query = "delete from ProjectTeamDetails WHERE EmployeeID="+ req.params.employeeid+"and ProjectID="+ req.params.projectid+";"
+                var query = "delete from ProjectTeamDetails WHERE EmployeeId="+ req.params.employeeid+"and ProjectId="+ req.params.projectid+";"
                 executeQuery (res, query);
 });
 
@@ -221,3 +221,8 @@ app.get("/user/projectdetails/:id", function(req , res){
                 var query = "EXEC spEmployeeindiffProjects "+ req.params.id;
                 executeQuery (res, query);
 });
+
+app.post("/projects/addproductowner/:projectid/:employeeid", function(req , res){
+                var query = "EXEC spAddProjectOwner     "+req.params.projectid+","+req.params.employeeid+";";
+                executeQuery (res, query);
+ });
