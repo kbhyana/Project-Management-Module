@@ -1,6 +1,7 @@
 $(document).ready(function(){
               var w= 3;  
             var r;
+    var info ;
                 $.ajax({
                     type: 'GET',
                     url: 'http://localhost:8000/user/projectdetails/'+w, 
@@ -17,7 +18,7 @@ $(document).ready(function(){
                             $('#proj').append(
 
                                '<div class="width">'+
-                                '<div class=" pcard card  text-white">'+
+                                '<div id="' + info[i].Name + '" class=" pcard card  text-white">'+
                         '<a class ="link" href="hrmsproject.html?id='+ info[i].ProjectId +'&role='+info[i].Role+'"><div class="card-header" id="projectname" >'+info[i].Name+'</div></a>'+
                         '<div class="card-body" id="cardbody">'+
                    '<ul><li id = "Progress ">' + "Progress: "+info[i].Progress +"%"+
@@ -29,14 +30,23 @@ $(document).ready(function(){
                                 '</div>'
                                
                             );
-                        }
-                           
                         
-                       
+                            if (info[i].Progress==100){
+                                console.log(info[i].Progress);
+                                console.log(this.id);
 
+                                var col=document.getElementById(info[i].Name);
+                                col.style.background="green";
+                                ;
+                            }
+                                
+                            
+                        }
+                        
                     }
 
 })
+
                     });
 
  
