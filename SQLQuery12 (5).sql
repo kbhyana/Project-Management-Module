@@ -404,6 +404,14 @@ set isPipeline=0
 WHERE ProjectId=@ProjectId END
 EXEC PipelinetoOngoing ;
 select*from Projects
+CREATE Procedure OngoingtoPipeline @ProjectId int
+as
+Begin
+update Projects
+set isPipeline=1
+WHERE ProjectId=@ProjectId END
+EXEC OngoingtoPipeline ;
+select*from Projects
 
 
 CREATE Procedure OngoingtoFinished @ProjectId int

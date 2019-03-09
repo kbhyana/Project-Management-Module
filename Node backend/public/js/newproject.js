@@ -1,11 +1,3 @@
-
-//        var slider = document.getElementById("myRange");
-//        var output = document.getElementById("demo");
-//        output.value = slider.value;
-//
-//        slider.oninput = function() {
-//            output.value = this.value;
-//        }
 var projectres;
 var ajaxResult=[];
 
@@ -49,7 +41,7 @@ function addproject(){
                 alert("No members to add .")
             },
         });
-//        console.log(ajaxResult[0].ProjectId);
+        //        console.log(ajaxResult[0].ProjectId);
 
         //ProjectID=projectres.ProjectID;
         //                console.log(ProjectID);  
@@ -71,9 +63,9 @@ function addownerandskill(){
     if( document.getElementById("projectowner").value !="" && document.getElementById("skillid").value !="")
         //              document.getElementById("teamlead").value !=""&&
     {
- var projectid=ajaxResult[0].ProjectId;
-var employeeid=document.getElementById("projectowner").value;
-        
+        var projectid=ajaxResult[0].ProjectId;
+        var employeeid=document.getElementById("projectowner").value;
+
         var ownerskill=JSON.stringify({  
             "projectid": document.getElementById("projectowner").value,
             "skillid": $('#skillid').val(),
@@ -85,24 +77,24 @@ var employeeid=document.getElementById("projectowner").value;
             dataType:"JSON",
             contentType: "application/json; charset=utf-8",
             success: function(res){
-                
-                                   alert("Added");
-                 
+
+                alert("Added");
+
                 //                $("#getCode").html(resp);
-                
+
 
             }
             //                    location.reload();
             ,
             error: function (xhr, status, error) {
                 console.log('Error: ' + JSON.stringify(error));
-                
+
             },
         });
-        
 
-//        ProjectID=projectres.ProjectID;
-//                        console.log(ProjectID);  
+
+        //        ProjectID=projectres.ProjectID;
+        //                        console.log(ProjectID);  
 
     }
 
@@ -122,40 +114,40 @@ function addskill(){
     if( document.getElementById("skillid").value !="")
         //              document.getElementById("teamlead").value !=""&&
     {
-       var projectid=ajaxResult[0].ProjectId;
+        var projectid=ajaxResult[0].ProjectId;
 
-var employeeid=document.getElementById("projectowner").value;
+        var employeeid=document.getElementById("projectowner").value;
         var arr = [];
         arr = $('#skillid').val();
         for(var i = 0 ; i<arr.length;i++ )
-           {
-        var skill=JSON.stringify({  
-            "projectid": document.getElementById("projectowner").value,
-            "skillid":arr[i] ,
-        })
-        $.ajax({
-            url: 'http://localhost:8000/projects/skills/'+projectid,
-            data: skill,
-            type: 'POST',
-            dataType:"JSON",
-            contentType: "application/json; charset=utf-8",
-            success: function(res){
-                
-                                   alert("Added");
-                 
-                //                $("#getCode").html(resp);
-            }
-            //                    location.reload();
-            ,
-            error: function (xhr, status, error) {
-                console.log('Error: ' + JSON.stringify(error));
-                
-            },
-            
-        });
-                  
-    }
-        window.location=("adminprojects.html");
+        {
+            var skill=JSON.stringify({  
+                "projectid": document.getElementById("projectowner").value,
+                "skillid":arr[i] ,
+            })
+            $.ajax({
+                url: 'http://localhost:8000/projects/skills/'+projectid,
+                data: skill,
+                type: 'POST',
+                dataType:"JSON",
+                contentType: "application/json; charset=utf-8",
+                success: function(res){
+
+                    alert("Added");
+
+                    //                $("#getCode").html(resp);
+                }
+                //                    location.reload();
+                ,
+                error: function (xhr, status, error) {
+                    console.log('Error: ' + JSON.stringify(error));
+
+                },
+
+            });
+
+        }
+        window.location=("adminprojects");
         //ProjectID=projectres.ProjectID;
         //                console.log(ProjectID);  
 
@@ -195,7 +187,7 @@ $(document).ready(function() {
                 $('#projectowner').append(
                     '<option value="'+Data[i].EmployeeId+'">'+ Data[i].FirstName +" "+Data[i].LastName+
                     '</option>'
-                                    
+
 
 
                 )
@@ -215,8 +207,8 @@ $(document).ready(function() {
 
 
             for(var j=0; j<Skills.length;j++){
-////                console.log(Skills[i].Id);
-//                console.log(Skills[i].Name);
+                ////                console.log(Skills[i].Id);
+                //                console.log(Skills[i].Name);
                 $('#skillid').append(
                     '<option value="'+ Skills[j].Id + '">'+ Skills[j].Name +
                     '</option>' 

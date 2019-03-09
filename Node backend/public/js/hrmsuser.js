@@ -19,7 +19,7 @@ $(document).ready(function(){
 
                     '<div class="width">'+
                     '<div id="' + info[i].Name + '" class=" pcard card  text-white">'+
-                    '<a class ="link" href="hrmsproject.html?id='+ info[i].ProjectId +'&role='+info[i].Role+'"><div class="card-header" id="projectname" >'+info[i].Name+'</div></a>'+
+                    '<a class ="link" href="userprojectdetails?id='+ info[i].ProjectId +'&role='+info[i].Role+'"><div class="card-header" id="projectname" >'+info[i].Name+'</div></a>'+
                     '<div class="card-body" id="cardbody">'+
                     '<ul><li id = "Progress ">' + "Progress: "+info[i].Progress +"%"+
                     '</li><li id = "Client">'+ "Client: "+info[i].Client +
@@ -40,8 +40,6 @@ $(document).ready(function(){
                     ;
                 }
             }
-
-
 
         }
 

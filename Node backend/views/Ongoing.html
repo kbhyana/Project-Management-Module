@@ -6,46 +6,15 @@
 
         <title>Projects</title>
 
-<!--        <link  rel="stylesheet" href="home.css">-->
+        <!--        <link  rel="stylesheet" href="home.css">-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link rel = "stylesheet" type = "text/css" href = "./css/Ongoing.css" />
 
 
-        <script src="ongoing.js"></script>
-
-        <style>
-            html
-            {
-                min-width: 700px;
-            }
-            .head
-            {
-                height: 90px;
-                color: white;
-            }
-            .nav-link
-            {
-                color: white;
-            }
-            .nav-link:hover
-            {
-                background: #55616f;
-                color: white;
-            } 
-
-            input{
-                border: none;
-                height:50%;
-            }
-            
-            .abc{
-                width:60%;
-                margin-left:30%;
-                
-            }
-        </style>    
+        <script src="./js/ongoing.js"></script>
 
     </head> 
     <body>
@@ -61,22 +30,17 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
 
                         <ul class="navbar-nav ml-auto my-2 my-lg-0">
-<!--
-                            <li class="nav-item active" style="padding: 1%">
-                                <button type="button" class="btn btn-primary"
-                                        onclick="location.href='adminprojects.html';">
-                                    Home
-                                    <span class="sr-only">(current)</span></button>
+                            <li lass="nav-item active" style="padding: 1%">
+                                <button type="button" class="btn btn-primary " id="moveproject1" ></button>
                             </li>
--->
                             <li class="nav-item active" style="padding: 1%">
-                                <button type="button" class="btn btn-primary " id="moveproject" ></button>
+                                <button type="button" class="btn btn-primary " id="moveproject" ></button><br>
                             </li>
                         </ul>
                     </div>
                 </nav>
             </div>
-            
+
             <nav class = "navbar navbar-expand-sm bg-dark navbar-dark" style="color:white;">
                 <button class="navbar-toggler" 
                         type="button" 
@@ -95,11 +59,11 @@
                         <li class = "nav-item">
                             <a href = "#" class="nav-link" data-toggle="collapse" data-target="#skilltable">Skills </a>
                         </li>
-                        <li class = "nav-item">
+                        <li class = "nav-item ">
                             <a href = "#" class="nav-link" data-toggle="collapse" data-target="#leavedetail">Leaves </a>
                         </li>
-                        <li class = "nav-item">
-                            <a class="nav-link" href="http://localhost:8000/adminprojects.html">Project(s) </a>
+                        <li class = "nav-item drop">
+                            <a class="nav-link" href="http://localhost:8000/adminprojects">Project(s) </a>
 
                         </li>
                         <li class = "nav-item">
@@ -113,7 +77,7 @@
                 <div>
                     <ul class = "nav navbar-right">
                         <li class = "nav-item">
-                            <a href = "http://localhost:8000/adminprojects.html" class="nav-link">Log-out </a>
+                            <a href = "http://localhost:8000/login" class="nav-link">Log-out </a>
                         </li>
                     </ul>
                 </div>
@@ -122,43 +86,43 @@
 
 
         <div class="container">
-        <div class="container" style="text-align: center">
+            <div class="container" style="text-align: center">
                 <h1 id="projectname">Name Of Project</h1><span>
                 <h4 class="in">Progress : <input id="Progress" style='width:60px' style="text-align:center" readonly></h4>
                 </span>
-        </div>
-         <hr>
-        <div class="container abc" >
+            </div>
+            <hr>
+            <div class="container abc" >
                 <h4>Name of Client : <span><input id="client" readonly></span></h4>
                 <h4>Project Owner : <span><input id="powner"  type="text" readonly> <button type="button" class="btn btn-primary" data-toggle="modal" data-target=#myModal id="demo">Edit</button></span></h4>
                 <h4>CM : <span><input id="cm"  readonly></span></h4>
-                
-        </div>
-               <hr>
-                <!--Modal-->
-                <div class="modal fade" id="myModal" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="po">Add/Change The Project Owner</h5>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="proejctowner-name" class="col-form-label">Project Owner:</label>
-                                        <select class="form-control" id="selectProjectOwner">
-                                        </select>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" onclick="updatepo();">Update</button> 
-                            </div>
+
+            </div>
+            <hr>
+            <!--Modal-->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="po">Add/Change The Project Owner</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="proejctowner-name" class="col-form-label">Project Owner:</label>
+                                    <select class="form-control" id="selectProjectOwner">
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="updatepo();">Update</button> 
                         </div>
                     </div>
                 </div>
+            </div>
             <h4>Developers</h4>
             <table class="table" id="members">
                 <thead>
@@ -206,13 +170,14 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <!--
+<footer class="footer text-center py-3" style="background-color: #f5f5f5; position:absolute; width:100%;">
+<div class="container">
+© 2019 Copyright: Cygrp ||Bootcamp:
 </div>
-        <!-- Footer -->
-        <footer class="footer text-center py-3" style="background-color: #f5f5f5; position:absolute; width:100%;">
-            <div class="container">
-                © 2019 Copyright: Cygrp ||Bootcamp:
-            </div>
-        </footer>
+</footer>
+-->
     </body>
 </html>
 

@@ -1,4 +1,3 @@
-
 var url = new URL(window.location.href);
 var projectid = url.searchParams.get("id");
 projectid=Number(projectid);
@@ -29,10 +28,12 @@ $(document).ready(function(){
             document.getElementById("skillbt").style.visibility="visible";
 
             document.getElementById("demo").style.visibility="visible";
-            
+
             document.getElementById("moveproject").setAttribute("onclick","finishedproject()");
-            
             document.getElementById("moveproject").innerHTML="Move To Finished";
+
+            document.getElementById("moveproject1").innerHTML="Move To PipeLine"
+            document.getElementById("moveproject1").setAttribute("onclick","pipelinedproject()");
 
 
             if(finished==1){
@@ -40,23 +41,23 @@ $(document).ready(function(){
                 document.getElementById("demo").style.visibility="hidden";
                 document.getElementById("moveproject").setAttribute("onclick","ongoingproject()");
                 document.getElementById("moveproject").innerHTML="Make it Live";
-
+                document.getElementById("moveproject1").style.visibility="hidden";
 
             }
-            
-             else if(pipelined==1){
-//                document.getElementById("skillbt").style.visibility="hidden";
+
+            else if(pipelined==1){
+                //                document.getElementById("skillbt").style.visibility="hidden";
                 document.getElementById("demo").style.visibility="hidden";
                 document.getElementById("moveproject").setAttribute("onclick","ongoingproject2()");
                 document.getElementById("moveproject").innerHTML="Make it Live";
-
+                document.getElementById("moveproject1").style.visibility="hidden";
 
             }
 
         }
     });
 
-    
+
     $.ajax({
         type: 'GET',
         url: 'http://localhost:8000/Projects/emprole/'+projectid,
@@ -135,16 +136,16 @@ $.ajax({
         console.log(res);
         for(k=0; k<res.length;k++){
             if(res[k].IsFinished==false){
-            $('#skills').append(
+                $('#skills').append(
 
-                '<tr><td id = "S">' + res[k].Name+
-                '</td><td id="B"><i id='+res[k].SkillId+' class="fa fa-trash fa-1x" onclick="ondelete(this.id);" aria-hidden="true"></i>' +
-                '</td></tr>');
+                    '<tr><td id = "S">' + res[k].Name+
+                    '</td><td id="B"><i id='+res[k].SkillId+' class="fa fa-trash fa-1x" onclick="ondelete(this.id);" aria-hidden="true"></i>' +
+                    '</td></tr>');
             }
 
             else{
                 $('#skills').append(
-                '<tr><td id = "S">' + res[k].Name+ '</td></tr>');   
+                    '<tr><td id = "S">' + res[k].Name+ '</td></tr>');   
             }
             pskills[k]=res[k].SkillId;
         }
@@ -163,33 +164,33 @@ function updateskills(){
     var check=0;
     for(var i = 0;i< pskills.length;i++){
         if (pskills[i]==technology){
-        alert("Skill already exists")
+            alert("Skill already exists")
             check=1;
         }
-        
+
     }
     if(check==0){
         var dataToSend=JSON.stringify({
-        "skillid": technology
+            "skillid": technology
         });
-                
+
         $.ajax({
-        url:'http://localhost:8000/projects/skills/'+projectid,
-        type:'POST',
-        data: dataToSend,
-        dataType:"TEXT",
-        contentType: "application/json; charset=utf-8",
-        success: function(res){
-            alert("New Skill Added");
-            location.reload();
-        },
-        error: function (xhr, status, error) {
-            console.log('Error: ' + JSON.stringify(error));
-        },
-    });            
-        
+            url:'http://localhost:8000/projects/skills/'+projectid,
+            type:'POST',
+            data: dataToSend,
+            dataType:"TEXT",
+            contentType: "application/json; charset=utf-8",
+            success: function(res){
+                alert("New Skill Added");
+                location.reload();
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + JSON.stringify(error));
+            },
+        });            
+
     }
-    
+
 }
 
 
@@ -236,7 +237,7 @@ function updatepo(){
 
 
 function finishedproject(){
-    
+
     var y= confirm("Are you sure want to finish this project?");
 
     if(y){
@@ -246,7 +247,28 @@ function finishedproject(){
             type: 'PUT',
             success:function(res){
                 alert("Project moved to finished");
-                
+
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + JSON.stringify(error));
+
+            },
+        });
+        location.reload();
+    }
+}
+function pipelinedproject(){
+
+    var y= confirm("Are you sure want to move project to Pipeline?");
+
+    if(y){
+
+        $.ajax({
+            url: 'http://localhost:8000/projects/ongoingtopipeline/'+projectid,
+            type: 'PUT',
+            success:function(res){
+                alert("Project moved to pipeline");
+
             },
             error: function (xhr, status, error) {
                 console.log('Error: ' + JSON.stringify(error));

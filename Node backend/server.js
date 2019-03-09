@@ -26,8 +26,8 @@ var server = app.listen(process.env.PORT || 8000, function () {
 //Initiallising connection string
 var dbConfig = {
     user:  "sa",
-    password: "password",
-    server: "CYG385",
+    password: "Vatsal@123",
+    server: "CYG317",
     database:"HRMS"
 };
 
@@ -68,6 +68,38 @@ var  executeQuery = function(res, query){
         sql.close();
     });
 }
+
+
+
+app.get('/adminprojects',(req,res)=>{
+    res.sendFile('/views/adminprojects.html',{root:__dirname});
+});
+app.get('/adminprojectdetails',(req,res)=>{
+    res.sendFile('/views/Ongoing.html',{root:__dirname});
+});
+app.get('/newproject',(req,res)=>{
+    res.sendFile('/views/newproject.html',{root:__dirname});
+});
+app.get('/userprojects',(req,res)=>{
+    res.sendFile('/views/hrmsuser.html',{root:__dirname});
+});
+app.get('/userprojectdetails',(req,res)=>{
+    res.sendFile('/views/hrmsproject.html',{root:__dirname});
+});
+app.get('/login',(req,res)=>{
+    res.sendFile('/views/MockLoginPage.html',{root:__dirname});
+});
+app.use(express.static(__dirname+'/public'));
+app.use(express.static(__dirname+'/views'));
+
+
+
+
+
+
+
+
+
 //GET API Employee
 app.get("/employees", function(req , res){
     var query = "select * from Employee;";
@@ -164,7 +196,7 @@ app.get("/skills", function(req,res){
 //                @DateAssigned date,
 //                @isPipeline bit)
 app.post("/projects", function(req , res){
-    var query = "exec AddNewProject '"+req.body.name+"',"+req.body.tenure+",'"+req.body.client+"','"+req.body.description+"','"+req.body.dateassigned+"',"+req.body.ispipeline+"; Select * from Projects where ProjectId = (SELECT MAX(ProjectId) FROM projects);"; 
+    var query = "exec AddNewProject '"+req.body.name+"',"+req.body.tenure+",'"+req.body.client+"','"+req.body.description+"','"+req.body.dateassigned+"',"+req.body.ispipeline+"; Select * from Projects where ProjectID = (SELECT MAX(ProjectID) FROM projects);"; 
     executeQuery (res, query);
 });
 //insert into SkillsinProject values (1,1) skillid :y projectid in url
@@ -194,9 +226,14 @@ app.put("/projects/finishedtoongoing/:projectid", function(req , res){
     executeQuery (res, query);
 });
 
+//change project from ongoing to Pipeline
+app.put("/projects/ongoingtopipeline/:projectid", function(req , res){
+    var query = "EXEC OngoingtoPipeline " + req.params.projectid+";" ;
+    executeQuery (res, query);
+});
 
 
-
+//change project from Pipeline to Ongoin
 app.put("/projects/pipelinetoongoing/:projectid", function(req , res){
     var query = "EXEC PipelinetoOngoing " + req.params.projectid+";" ;
     executeQuery (res, query);
@@ -209,7 +246,7 @@ app.delete("/projects/:id", function(req , res){
 });
 // delete member in project
 app.delete("/projects/deletemember/:employeeid/:projectid", function(req , res){
-    var query = "delete from ProjectTeamDetails WHERE EmployeeId="+ req.params.employeeid+"and ProjectId="+ req.params.projectid+";"
+    var query = "delete from ProjectTeamDetails WHERE EmployeeID="+ req.params.employeeid+"and ProjectID="+ req.params.projectid+";"
     executeQuery (res, query);
 });
 
@@ -219,10 +256,5 @@ app.delete("/projects/skills/:projectid/:skillid", function(req , res){
 });
 app.get("/user/projectdetails/:id", function(req , res){
     var query = "EXEC spEmployeeindiffProjects "+ req.params.id;
-    executeQuery (res, query);
-});
-
-app.post("/projects/addproductowner/:projectid/:employeeid", function(req , res){
-    var query = "EXEC spAddProjectOwner     "+req.params.projectid+","+req.params.employeeid+";";
     executeQuery (res, query);
 });
